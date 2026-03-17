@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>龙牙 27SS 夹克品类 AI 设计手册</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Noto+Sans+SC:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #0b0c10;
+            color: #c9d1d9;
+            scroll-behavior: smooth;
+        }
+        .brand-font {
+            font-family: 'Barlow Condensed', sans-serif;
+            letter-spacing: 0.1em;
+        }
+        .card-dark {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+        }
+        /* 统一 3:4 比例展示 */
+        .ratio-3-4 {
+            aspect-ratio: 3 / 4;
+            background: #0d1117;
+            border: 1px solid #21262d;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            cursor: zoom-in;
+        }
+        .ratio-3-4 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .ratio-3-4:hover img {
+            transform: scale(1.05);
+        }
+        .btn-copy {
+            background: #f97316;
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+        .btn-copy:hover {
+            background: #fb923c;
+        }
+        .prompt-box {
+            background: #000;
+            border: 1px solid #30363d;
+            padding: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: #8b949e;
+            border-radius: 6px;
+        }
+        .kw-hint {
+            color: #f97316;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: bold;
+        }
+        .tool-tag {
+            font-size: 10px;
+            color: #666;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+            text-transform: uppercase;
+        }
+        table {
+            width: 100%;
+            font-size: 13px;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #30363d;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background: #21262d;
+            color: #f97316;
+            text-transform: uppercase;
+        }
+        /* 词云样式 */
+        .word-cloud-tag {
+            display: inline-block;
+            padding: 4px 14px;
+            margin: 5px;
+            border-radius: 20px;
+            border: 1px solid #30363d;
+            font-size: 12px;
+            color: #8b949e;
+            background: rgba(48, 54, 61, 0.2);
+        }
+        .word-cloud-tag.primary {
+            border-color: #f97316;
+            color: #fff;
+            background: rgba(249, 115, 22, 0.1);
+            font-weight: bold;
+        }
+        /* Lightbox 预览 */
+        #lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+        #lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body class="leading-relaxed">
+
+    <div id="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="Preview">
+    </div>
+
+    <header class="bg-black border-b border-gray-800 sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 bg-orange-600 rounded-sm flex items-center justify-center font-bold text-black italic">DT</div>
+                <h1 class="text-xl font-bold brand-font text-white uppercase tracking-tighter">Dragon Tooth 27SS AI Playbook</h1>
+            </div>
+            <nav class="hidden lg:flex space-x-6 text-[10px] uppercase font-bold tracking-widest text-gray-400">
+                <a href="#bundle" class="hover:text-orange-500">项目封装</a>
+                <a href="#mother" class="hover:text-orange-500">母款原型</a>
+                <a href="#planning" class="hover:text-orange-500">规划矩阵</a>
+                <a href="#mj-styles" class="hover:text-orange-500">MJ 进化</a>
+                <a href="#comfy-styles" class="hover:text-orange-500">ComfyUI 延伸</a>
+                <a href="#prints" class="hover:text-orange-500">印花方向</a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="bundle" class="py-12 container mx-auto px-6">
+        <div class="card-dark p-8 border-l-4 border-l-orange-600 relative overflow-hidden">
+            <div class="flex justify-between items-start mb-8 relative z-10">
+                <div>
+                    <h3 class="text-2xl font-bold text-white uppercase brand-font italic tracking-widest">龙牙项目全量封装包 (Prompt Bundle)</h3>
+                    <p class="text-xs text-gray-500 mt-2 italic">提示：启动 AI 创作前，请先复制并投喂此封装包指令。</p>
+                </div>
+                <button class="btn-copy" onclick="copyBundle()">复制封装代码</button>
+            </div>
+            
+            <div class="flex flex-wrap mb-4">
+                <span class="word-cloud-tag primary">中国战术男装</span>
+                <span class="word-cloud-tag">对抗 & 生存</span>
+                <span class="word-cloud-tag primary">极致机能</span>
+                <span class="word-cloud-tag">硬核工业风</span>
+                <span class="word-cloud-tag primary">Cordura (PRO)</span>
+                <span class="word-cloud-tag">YKK 辅料</span>
+                <span class="word-cloud-tag">导电丝格纹</span>
+                <span class="word-cloud-tag primary">27SS 结构升级</span>
+                <span class="word-cloud-tag">行政战术</span>
+                <span class="word-cloud-tag">城市差旅</span>
+                <span class="word-cloud-tag">战术防晒</span>
+                <span class="word-cloud-tag">PI棉</span>
+                <span class="word-cloud-tag">风洞散热</span>
+            </div>
+
+            <pre id="bundle-content" class="hidden"># 龙牙 (Dragon Tooth) 27SS 夹克品类设计任务全量上下文
+
+## 1. 品牌灵魂与视觉基因 (Brand DNA)
+- **品牌定位：** 中国战术男装领军品牌。
+- **核心关键词：** 对抗、生存、极致机能、职业化、硬核。
+- **视觉风格：** 硬朗、男性化、高工业感、真实且严谨。
+- **禁区：** 严禁反战符号、涂鸦、波普艺术、可爱插画、过度潮流化或虚幻的赛博朋克。
+
+## 2. 27SS 战略目标 (Strategy: Structure & Growth)
+- **核心任务：** 结构升级与增长重构。从“扩款”转为“精准补位”。
+- **补位方向：** - 行政战术 (Admin)：商务面相，极致平整。
+  - 城市差旅 (Travel)：便携收纳，全天候舒适。
+  - 战术防晒 (Sun-shield)：机能防晒，拒绝廉价感。
+  - 轻量执勤 (Duty)：高透气、材料科技外化。
+
+## 3. 技术与材料边界 (Technical Boundary)
+- **允许使用的技术：** Cordura (PRO)、Polartec、PI棉、导电丝、YKK、高士线。
+- **设计逻辑：** 基于现有的缝纫与生产工艺，印花应为“技术的视觉外化”。</pre>
+        </div>
+    </section>
+
+    <section id="mother" class="py-12 container mx-auto px-6">
+        <h3 class="text-2xl font-bold text-white mb-8 brand-font uppercase italic tracking-widest border-l-4 border-orange-600 pl-4">Phase 1: 经典母款原型 (The Originals)</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div class="card-dark p-6">
+                <div class="ratio-3-4 mb-4" onclick="openLightbox(this)">
+                    <img src="./images/20260316132602.jpg" alt="Mother A">
+                </div>
+                <h4 class="font-bold text-white mb-2 uppercase italic text-sm text-center">Mother A: 硬核立领原型</h4>
+                <p class="text-[10px] text-center text-gray-500">路径: ./images/20260316132602.jpg</p>
+            </div>
+            <div class="card-dark p-6">
+                <div class="ratio-3-4 mb-4" onclick="openLightbox(this)">
+                    <img src="./images/ComfyUI_00504_.png" alt="Mother B">
+                </div>
+                <h4 class="font-bold text-white mb-2 uppercase italic text-sm text-center">Mother B: 机能连帽原型</h4>
+                <p class="text-[10px] text-center text-gray-500">路径: ./images/ComfyUI_00504_.png</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="planning" class="py-12 container mx-auto px-6">
+        <h3 class="text-2xl font-bold text-white mb-8 brand-font uppercase italic tracking-widest border-l-4 border-orange-600 pl-4">Phase 2: 27SS 夹克全案方向规划矩阵</h3>
+        <div class="card-dark overflow-hidden shadow-2xl">
+            <table>
+                <thead>
+                    <tr>
+                        <th>子款定位</th>
+                        <th>核心升级逻辑 (基于企划策略)</th>
+                        <th>关联母款</th>
+                        <th>关键视觉/面料要素</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="font-bold text-white">行政战术版 (Admin)</td>
+                        <td>修复主销结构，移除冗余挂点，强化商务面相。</td>
+                        <td>母款 A</td>
+                        <td>Cordura PRO, 隐藏拉链, 哑光, 精细缝线。</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold text-white">轻量执勤版 (Duty)</td>
+                        <td>极致轻量化与战术专业度。强化透气性能视觉化。</td>
+                        <td>母款 A</td>
+                        <td>导电丝格纹, 激光切割风洞, 3D 修身裁剪。</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold text-white">城市差旅版 (Travel)</td>
+                        <td>补齐增长空位，针对快速转场与收纳。</td>
+                        <td>母款 B</td>
+                        <td>Packable 系统, 双向 YKK, 抗皱轻量尼龙。</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold text-white">战术防晒版 (Sun)</td>
+                        <td>重构失效定义，将硬核机能引入防晒品类。</td>
+                        <td>母款 B</td>
+                        <td>UV Protection, 导电丝肌理, 狼棕/机能灰。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="mj-styles" class="py-12 container mx-auto px-6 bg-gray-950 rounded-2xl">
+        <h3 class="text-2xl font-bold text-white mb-12 brand-font uppercase italic tracking-widest text-center">Phase 3: 子款进化生成方向 (MJ V7.0)</h3>
+
+        <div class="mb-20 px-4">
+            <div class="flex justify-between items-end mb-4">
+                <div>
+                    <span class="text-orange-600 font-bold brand-font text-xl italic uppercase">#01 Admin Tactical</span>
+                    <span class="text-[10px] text-gray-600 block">Model: Midjourney v7.0</span>
+                </div>
+                <button class="btn-copy" onclick="copyPrompt('mj-admin')">复制 PROMPT</button>
+            </div>
+            <div class="prompt-box" id="mj-admin">Full-body Ghost mannequin shot of a men's high-end tactical administrative jacket, inspired by M65 stand collar silhouette, minimalist tactical design, premium Cordura PRO fabric texture, smooth and anti-wrinkle surface, hidden chest pockets with seamless zippers, charcoal gray, matte finish, sophisticated craftsmanship, industrial aesthetics, seamless commercial studio gray background, cinematic lighting --v 7.0 --ar 3:4</div>
+            <div class="kw-hint">中文关键词：高端战术、行政版、Cordura PRO、极简、隐藏口袋、哑光质感</div>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_Full-body_Ghost_mannequin_shot_of_a_mens_high-end_6e59203a-eca9-473d-91c7-b87115703e19_0.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_Full-body_Ghost_mannequin_shot_of_a_mens_high-end_6e59203a-eca9-473d-91c7-b87115703e19_1.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_Full-body_Ghost_mannequin_shot_of_a_mens_high-end_6e59203a-eca9-473d-91c7-b87115703e19_2.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_Full-body_Ghost_mannequin_shot_of_a_mens_high-end_6e59203a-eca9-473d-91c7-b87115703e19_3.png"></div>
+            </div>
+        </div>
+
+        <div class="mb-20 px-4">
+            <div class="flex justify-between items-end mb-4">
+                <div>
+                    <span class="text-orange-600 font-bold brand-font text-xl italic uppercase">#02 Lightweight Duty</span>
+                    <span class="text-[10px] text-gray-600 block">Model: Midjourney v7.0</span>
+                </div>
+                <button class="btn-copy" onclick="copyPrompt('mj-duty')">复制 PROMPT</button>
+            </div>
+            <div class="prompt-box" id="mj-duty">Full-body Ghost mannequin shot of a lightweight tactical jacket, technical apparel design, micro-grid conductive yarn fabric texture, breathable laser-cut vents under arms, reinforced shoulder patches, tactical stand collar, YKK metallic zippers, olive drab color, rugged but modern, functional outdoor gear style, cinematic lighting on textile weave, seamless commercial studio gray background --v 7.0 --ar 3:4</div>
+            <div class="kw-hint">中文关键词：轻量执勤、导电丝微格纹、激光切割、战术立领、YKK金属件</div>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_Full-body_Ghost_mannequin_shot_of_a_lightweight_t_953e95c7-960f-48c2-9c9a-87a9155f3c13_0.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_Full-body_Ghost_mannequin_shot_of_a_lightweight_t_953e95c7-960f-48c2-9c9a-87a9155f3c13_1.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_Full-body_Ghost_mannequin_shot_of_a_lightweight_t_953e95c7-960f-48c2-9c9a-87a9155f3c13_2.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_Full-body_Ghost_mannequin_shot_of_a_lightweight_t_953e95c7-960f-48c2-9c9a-87a9155f3c13_3.png"></div>
+            </div>
+        </div>
+
+        <div class="mb-20 px-4">
+            <div class="flex justify-between items-end mb-4">
+                <div>
+                    <span class="text-orange-600 font-bold brand-font text-xl italic uppercase">#03 Urban Traveler</span>
+                    <span class="text-[10px] text-gray-600 block">Model: Midjourney v7.0</span>
+                </div>
+                <button class="btn-copy" onclick="copyPrompt('mj-travel')">复制 PROMPT</button>
+            </div>
+            <div class="prompt-box" id="mj-travel">Full-body Ghost mannequin shot of a sleek urban tactical windbreaker with an integrated hood, techwear aesthetic, packable design, lightweight high-tech nylon, multiple hidden utility pockets, dark navy blue, clean lines, minimalist functionalism, realistic product photography, soft studio lighting, seamless commercial studio gray background --v 7.0 --ar 3:4</div>
+            <div class="kw-hint">中文关键词：城市差旅、收纳系统、科技尼龙、隐藏口袋、机能简约</div>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_Full-body_Ghost_mannequin_shot_of_a_sleek_urban_t_22a18e28-7cfd-4bd0-a501-ba5d9e9bb65e_0.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_Full-body_Ghost_mannequin_shot_of_a_sleek_urban_t_22a18e28-7cfd-4bd0-a501-ba5d9e9bb65e_1.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_Full-body_Ghost_mannequin_shot_of_a_sleek_urban_t_22a18e28-7cfd-4bd0-a501-ba5d9e9bb65e_2.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_Full-body_Ghost_mannequin_shot_of_a_sleek_urban_t_22a18e28-7cfd-4bd0-a501-ba5d9e9bb65e_3.png"></div>
+            </div>
+        </div>
+
+        <div class="px-4">
+            <div class="flex justify-between items-end mb-4">
+                <div>
+                    <span class="text-orange-600 font-bold brand-font text-xl italic uppercase">#04 Tactical Sun-shield</span>
+                    <span class="text-[10px] text-gray-600 block">Model: Midjourney v7.0</span>
+                </div>
+                <button class="btn-copy" onclick="copyPrompt('mj-sun')">复制 PROMPT</button>
+            </div>
+            <div class="prompt-box" id="mj-sun">Full-body Ghost mannequin shot of a men's tactical sun-protection jacket, hooded performance outerwear, ultra-lightweight breathable fabric, light silver-gray color, technical outdoor aesthetic, ergonomic sleeve design, UV protection material with a matte texture, modern rugged look, lifestyle outdoor photography style, seamless commercial studio gray background --v 7.0 --ar 3:4</div>
+            <div class="kw-hint">中文关键词：战术防晒、超轻透气、机能灰、人体工学剪裁、UV防护</div>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_Full-body_Ghost_mannequin_shot_of_a_mens_tactical_a7cb7b04-4a5a-4990-a523-6fa920de3a5a_0.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_Full-body_Ghost_mannequin_shot_of_a_mens_tactical_a7cb7b04-4a5a-4990-a523-6fa920de3a5a_1.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_Full-body_Ghost_mannequin_shot_of_a_mens_tactical_a7cb7b04-4a5a-4990-a523-6fa920de3a5a_2.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_Full-body_Ghost_mannequin_shot_of_a_mens_tactical_a7cb7b04-4a5a-4990-a523-6fa920de3a5a_3.png"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="comfy-styles" class="py-20 container mx-auto px-6">
+        <h3 class="text-2xl font-bold text-white mb-12 brand-font uppercase italic tracking-widest text-center">Phase 4: ComfyUI 款式延伸方案</h3>
+
+        <div class="mb-16">
+            <h4 class="text-orange-500 font-bold mb-6 text-sm uppercase italic">1. 工作流架构 (Workflow Architecture)</h4>
+            <div class="card-dark p-2">
+                <div class="w-full rounded overflow-hidden cursor-zoom-in" onclick="openLightbox(this)">
+                    <img src="./images/20260316145856.jpg" class="w-full h-auto">
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-16">
+            <h4 class="text-orange-500 font-bold mb-6 text-sm uppercase italic">2. 品牌参考库 (Market References)</h4>
+            <div class="grid grid-cols-3 lg:grid-cols-7 gap-3">
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/_2_jjiawei：）_来自小红书网页版 (1).jpg"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/_7_jjiawei：）_来自小红书网页版.jpg"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/2000307601052_2_582a9b82-8736-466a-b5aa-791743e1196b_2048x.webp"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/2000307601052_10_2048x.webp"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/别装了，能卖才是王道_3_实战派_来自小红书网页版.jpg"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/DESCENTE NIKE_1_Gsv Archive_来自小红书网页版.jpg"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/Metaphysician电子档案_1_Meta physician_来自小红书网页版.jpg"></div>
+            </div>
+        </div>
+
+        <div>
+            <h4 class="text-orange-500 font-bold mb-6 text-sm uppercase italic">3. 生成案例展示 (Generation Cases)</h4>
+            <div class="grid grid-cols-3 gap-6">
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/ComfyUI_00505_.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/ComfyUI_00506_.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/ComfyUI_00507_.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/ComfyUI_00508_.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/ComfyUI_00509_.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/ComfyUI_00510_.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/ComfyUI_00511_.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/ComfyUI_00512_.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/ComfyUI_00513_.png"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="prints" class="py-20 container mx-auto px-6 bg-gray-950 rounded-2xl">
+        <h3 class="text-2xl font-bold text-white mb-12 brand-font uppercase italic tracking-widest text-center">Phase 5: 印花设计方向 (Print Directions)</h3>
+
+        <div class="mb-20 px-2">
+            <div class="flex justify-between items-end mb-4 border-b border-gray-800 pb-2">
+                <h5 class="text-white font-bold uppercase italic text-sm">#01 Tactical Topography (战术地形图)</h5>
+                <button class="btn-copy" onclick="copyPrompt('p-topo')">复制 PROMPT</button>
+            </div>
+            <div class="prompt-box" id="p-topo">Tactical topographical map graphic of a dense urban environment, stylized with grid coordinates, navigation symbols, and strategic route lines, military cartography aesthetic, high-tech screen print on a seamless commercial studio gray background, muted industrial color palette --v 7.0 --ar 3:4</div>
+            <div class="kw-hint">中文关键词：战术地形图、坐标、网格、工业色彩、丝网印效果</div>
+            <div class="grid grid-cols-4 gap-4 mt-6">
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_Tactical_topographical_map_graphic_of_a_dense_urb_26b50fa1-7376-4b90-b445-5279f7883498_0.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_Tactical_topographical_map_graphic_of_a_dense_urb_26b50fa1-7376-4b90-b445-5279f7883498_3.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_Tactical_topographical_map_graphic_of_a_dense_urb_a5887436-7e7b-483e-be92-08b0718f6ac7_0.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_Tactical_topographical_map_graphic_of_a_dense_urb_a5887436-7e7b-483e-be92-08b0718f6ac7_1.png"></div>
+            </div>
+        </div>
+
+        <div class="mb-20 px-2">
+            <div class="flex justify-between items-end mb-4 border-b border-gray-800 pb-2">
+                <h5 class="text-white font-bold uppercase italic text-sm">#05 Survival Manifest (生存清单)</h5>
+                <button class="btn-copy" onclick="copyPrompt('p-manifest')">复制 PROMPT</button>
+            </div>
+            <div class="prompt-box" id="p-manifest">A vertical back-print graphic for a tactical jacket, featuring a minimalist icon-based manifest of travel gear, tactical iconography, serial numbers, "DRAGON TOOTH" branding in a small tech-font, stencil print style, utilitarian aesthetic, flat vector illustration, seamless commercial studio gray background --v 7.0 --ar 3:4</div>
+            <div class="kw-hint">中文关键词：生存清单、极简图标、模板喷码、背幅印花、实用美学</div>
+            <div class="grid grid-cols-4 gap-4 mt-6">
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_A_vertical_back-print_graphic_for_a_tactical_jack_babbfc56-4f60-48da-9884-94204ea5e024_0.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_A_vertical_back-print_graphic_for_a_tactical_jack_babbfc56-4f60-48da-9884-94204ea5e024_1.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_A_vertical_back-print_graphic_for_a_tactical_jack_babbfc56-4f60-48da-9884-94204ea5e024_2.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_A_vertical_back-print_graphic_for_a_tactical_jack_babbfc56-4f60-48da-9884-94204ea5e024_3.png"></div>
+            </div>
+        </div>
+
+        <div class="px-2">
+            <div class="flex justify-between items-end mb-4 border-b border-gray-800 pb-2">
+                <h5 class="text-white font-bold uppercase italic text-sm">#06 Navigation Data (导航坐标)</h5>
+                <button class="btn-copy" onclick="copyPrompt('p-nav')">复制 PROMPT</button>
+            </div>
+            <div class="prompt-box" id="p-nav">A technical graphic design for streetwear, featuring a tactical compass rose and navigation data strings, stencil typography, sleek vector lines, geometric precision, industrial identification style, seamless commercial studio gray background, balanced composition --v 7.0 --ar 3:4</div>
+            <div class="kw-hint">中文关键词：导航数据、罗盘、矢量线、工业识别、几何构图</div>
+            <div class="grid grid-cols-4 gap-4 mt-6">
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_A_technical_graphic_design_for_streetwear_featuri_61dc15a7-3d21-4335-ad08-374715023725_0.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_A_technical_graphic_design_for_streetwear_featuri_61dc15a7-3d21-4335-ad08-374715023725_1.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_A_technical_graphic_design_for_streetwear_featuri_61dc15a7-3d21-4335-ad08-374715023725_2.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_A_technical_graphic_design_for_streetwear_featuri_61dc15a7-3d21-4335-ad08-374715023725_3.png"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 bg-black border-t border-gray-900 text-center">
+        <div class="container mx-auto px-6">
+            <div class="inline-block border border-orange-600 px-6 py-2 mb-6">
+                <span class="text-orange-600 font-bold brand-font uppercase tracking-widest text-xs italic">Internal Technical Reference / 龙牙内部设计参考</span>
+            </div>
+            <p class="text-gray-600 text-[10px] uppercase tracking-widest">© 2026 Dragon Tooth Design Systems | AI Enhanced Process</p>
+        </div>
+    </footer>
+
+    <script>
+        function openLightbox(container) {
+            const imgSrc = container.querySelector('img').src;
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = imgSrc;
+            lightbox.style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        function copyPrompt(id) {
+            const text = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = event.target;
+                const originalText = btn.innerText;
+                btn.innerText = "COPIED!";
+                btn.style.background = "#fff";
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.style.background = "";
+                }, 1000);
+            });
+        }
+
+        function copyBundle() {
+            const content = document.getElementById('bundle-content').innerText;
+            navigator.clipboard.writeText(content).then(() => {
+                alert('项目全量封装包代码已复制！');
+            });
+        }
+    </script>
+</body>
+</html>
