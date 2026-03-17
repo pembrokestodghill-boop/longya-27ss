@@ -20,9 +20,10 @@
         
         /* 空白占位符 */
         .empty-slot { 
-            aspect-ratio: 3 / 4; border: 1px dashed #4b5563; background: #0d1117; border-radius: 4px;
+            border: 1px dashed #4b5563; background: #0d1117; border-radius: 4px;
             display: flex; flex-direction: column; align-items: center; justify-content: center; 
             color: #6b7280; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; text-align: center; padding: 10px; cursor: default;
+            transition: all 0.3s ease;
         }
         .empty-slot i { font-size: 20px; margin-bottom: 8px; opacity: 0.5; }
 
@@ -41,7 +42,6 @@
         .btn-copy.copied { background: #ffffff !important; color: #000000 !important; border-color: #ffffff; box-shadow: 0 0 20px rgba(255,255,255,0.5); }
 
         .prompt-box { background: #000; border: 1px solid #30363d; padding: 16px; font-family: 'Courier New', monospace; font-size: 13px; color: #8b949e; border-radius: 4px; position: relative; line-height: 1.6; }
-        
         .kw-hint { color: #f97316; font-size: 11px; margin-top: 8px; font-weight: bold; opacity: 0.9;}
 
         /* 技术脚标 */
@@ -72,7 +72,7 @@
         <img id="lightbox-img" src="" alt="Preview">
     </div>
 
-    <!-- 导航栏更新 -->
+    <!-- 导航栏 -->
     <header class="bg-black border-b border-gray-800 sticky top-0 z-50">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-3">
@@ -81,10 +81,10 @@
             </div>
             <nav class="hidden lg:flex space-x-5 text-[10px] uppercase font-bold tracking-widest text-gray-400">
                 <a href="#strategy" class="hover:text-orange-500">战略/母款</a>
-                <a href="#apparel-gen" class="hover:text-orange-500 text-orange-500">子款方向</a>
+                <a href="#apparel-gen" class="hover:text-orange-500">子款方向</a>
                 <a href="#prints" class="hover:text-orange-500">印花/文化衫</a>
                 <a href="#materials" class="hover:text-orange-500">面料沙盒</a>
-                <a href="#avatar" class="hover:text-orange-500">品牌数字人</a>
+                <a href="#avatar" class="hover:text-orange-500 text-orange-500">品牌数字人</a>
             </nav>
         </div>
     </header>
@@ -265,7 +265,11 @@
                     <div class="lg:col-span-4">
                         <div class="img-stack" onclick="toggleGallery('gallery-travel')">
                             <div class="stack-layer layer-2 ratio-3-4"><img src="./images/zhou.zichen_Full-body_Ghost_mannequin_shot_of_a_sleek_urban_t_22a18e28-7cfd-4bd0-a501-ba5d9e9bb65e_0.png"></div>
-                            <div class="stack-layer layer-1 ratio-3-4"><img src="./images/zhou.zichen_Full-body_Ghost_mannequin_shot_of_a_sleek_urban_t_22a18e28-7cfd-4bd0-a501-ba5d9e9bb65e_1.png"></div>
+                            <div class="stack-layer layer-1 ratio-3-4"><img src="./images/zhou.zichen_Full-body_Ghost_mannequin_shot_of_a_sleek_urban_t_22a18e28-7cfd-4bd0-a501-ba5d9e9bb65e_1.png">
+                                <div class="absolute inset-0 bg-black/70 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <span class="text-white font-bold text-[10px] tracking-widest border border-white px-4 py-2">展开款式库</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="lg:col-span-8">
@@ -293,7 +297,12 @@
                     <div class="lg:col-span-4">
                         <div class="img-stack" onclick="toggleGallery('gallery-sun')">
                             <div class="stack-layer layer-2 ratio-3-4"><img src="./images/zhou.zichen_Full-body_Ghost_mannequin_shot_of_a_mens_tactical_a7cb7b04-4a5a-4990-a523-6fa920de3a5a_0.png"></div>
-                            <div class="stack-layer layer-1 ratio-3-4"><img src="./images/zhou.zichen_Full-body_Ghost_mannequin_shot_of_a_mens_tactical_a7cb7b04-4a5a-4990-a523-6fa920de3a5a_2.png"></div>
+                            <div class="stack-layer layer-1 ratio-3-4">
+                                <img src="./images/zhou.zichen_Full-body_Ghost_mannequin_shot_of_a_mens_tactical_a7cb7b04-4a5a-4990-a523-6fa920de3a5a_2.png">
+                                <div class="absolute inset-0 bg-black/70 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <span class="text-white font-bold text-[10px] tracking-widest border border-white px-4 py-2">展开款式库</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="lg:col-span-8">
@@ -353,7 +362,7 @@
         </div>
     </section>
 
-    <!-- Phase 4: 印花与文化衫资产库 (原 Phase 5) -->
+    <!-- Phase 4: 印花与文化衫资产库 -->
     <section id="prints" class="py-20 container mx-auto px-6">
         <div class="text-center mb-16">
             <h2 class="text-3xl font-bold text-white brand-font uppercase italic tracking-widest">Phase 4: 印花与文化衫资产库</h2>
@@ -361,7 +370,7 @@
         </div>
 
         <div class="space-y-12">
-            <!-- #01 文化衫专项：硬核和平鸽 (重构为直列展开展示) -->
+            <!-- #01 文化衫专项：硬核和平鸽 -->
             <div class="card-dark p-8 highlight-section">
                 <div class="mb-8 border-b border-gray-800 pb-4">
                     <h4 class="library-title"><span class="library-number">#01</span> 文化衫专项：硬核和平鸽 (Hardcore Peace Pigeon)</h4>
@@ -370,55 +379,104 @@
                 
                 <div class="space-y-12">
                     <!-- Style A: 军事制图 -->
-                    <div>
-                        <div class="prompt-box mb-6">
-                            <div class="text-orange-500 font-bold text-xs mb-2 uppercase tracking-widest">Style A: 军事制图风格 (Military Blueprint)</div>
-                            <span id="p-pigeon-1" data-suffix=" --v 7.0 --ar 3:4">T-shirt graphic design, "Hardcore Peace Pigeon", mechanical pigeon made of tactical gear, ammo components, and bullet parts, military schematic style, technical illustration, monochrome, high industrial aesthetic, clean vector lines, on light gray background</span>
-                            <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 3:4</div>
-                            <button class="absolute top-4 right-4 btn-copy" onclick="copyText(this, 'p-pigeon-1')">COPY</button>
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-4">
+                            <div class="img-stack" onclick="toggleGallery('gallery-pigeon-a')">
+                                <div class="stack-layer layer-3 ratio-3-4"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_be4f7d5e-e3b3-497d-9e44-6ced07fd9810_2.png"></div>
+                                <div class="stack-layer layer-2 ratio-3-4"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_be4f7d5e-e3b3-497d-9e44-6ced07fd9810_1.png"></div>
+                                <div class="stack-layer layer-1 ratio-3-4">
+                                    <img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_be4f7d5e-e3b3-497d-9e44-6ced07fd9810_0.png">
+                                    <div class="absolute inset-0 bg-black/70 flex flex-col items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                                        <span class="text-white font-bold text-[10px] tracking-widest border border-white px-4 py-2">展开制图风库</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                            <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_be4f7d5e-e3b3-497d-9e44-6ced07fd9810_0.png"></div>
-                            <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_be4f7d5e-e3b3-497d-9e44-6ced07fd9810_1.png"></div>
-                            <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_be4f7d5e-e3b3-497d-9e44-6ced07fd9810_2.png"></div>
-                            <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_be4f7d5e-e3b3-497d-9e44-6ced07fd9810_3.png"></div>
-                            <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_cff26c3f-a13f-47ac-a579-5ab3e4a10e35_1.png"></div>
-                            <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_cff26c3f-a13f-47ac-a579-5ab3e4a10e35_3.png"></div>
-                            <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_d88bd2af-c46d-4e8e-8166-7424390f6a17_1.png"></div>
-                            <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_d88bd2af-c46d-4e8e-8166-7424390f6a17_3.png"></div>
+                        <div class="lg:col-span-8">
+                            <div class="prompt-box">
+                                <div class="text-orange-500 font-bold text-xs mb-2 uppercase tracking-widest">Style A: 军事制图风格 (Military Blueprint)</div>
+                                <span id="p-pigeon-1" data-suffix=" --v 7.0 --ar 3:4">T-shirt graphic design, "Hardcore Peace Pigeon", mechanical pigeon made of tactical gear, ammo components, and bullet parts, military schematic style, technical illustration, monochrome, high industrial aesthetic, clean vector lines, on light gray background</span>
+                                <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 3:4</div>
+                                <button class="absolute top-4 right-4 btn-copy" onclick="copyText(this, 'p-pigeon-1')">COPY</button>
+                            </div>
+                            <div class="kw-hint mt-2">中文关键词：硬核和平鸽、战术装备与弹药部件制造的机械鸽、军事蓝图风格、技术插图、单色、高工业美学</div>
                         </div>
+                    </div>
+                    <div id="gallery-pigeon-a" class="hidden-gallery grid-cols-2 lg:grid-cols-4 gap-6 mt-6 border-t border-gray-800 pt-8">
+                        <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_be4f7d5e-e3b3-497d-9e44-6ced07fd9810_0.png"></div>
+                        <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_be4f7d5e-e3b3-497d-9e44-6ced07fd9810_1.png"></div>
+                        <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_be4f7d5e-e3b3-497d-9e44-6ced07fd9810_2.png"></div>
+                        <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_be4f7d5e-e3b3-497d-9e44-6ced07fd9810_3.png"></div>
+                        <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_cff26c3f-a13f-47ac-a579-5ab3e4a10e35_1.png"></div>
+                        <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_cff26c3f-a13f-47ac-a579-5ab3e4a10e35_3.png"></div>
+                        <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_d88bd2af-c46d-4e8e-8166-7424390f6a17_1.png"></div>
+                        <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_d88bd2af-c46d-4e8e-8166-7424390f6a17_3.png"></div>
                     </div>
 
                     <!-- Style B: 模板涂鸦 -->
-                    <div class="border-t border-gray-800 pt-8">
-                        <div class="prompt-box mb-6">
-                            <div class="text-orange-500 font-bold text-xs mb-2 uppercase tracking-widest">Style B: 模板涂鸦风格 (Stencil Spray)</div>
-                            <span id="p-pigeon-2" data-suffix=" --v 7.0 --ar 3:4">T-shirt graphic design, "Hardcore Peace Pigeon", aggressive pigeon silhouette made of fragmented tactical vest parts and gunmetal, military stencil spray paint style, rugged texture, high contrast black and orange accents, utilitarian streetwear aesthetic, flat background</span>
-                            <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 3:4</div>
-                            <button class="absolute top-4 right-4 btn-copy" onclick="copyText(this, 'p-pigeon-2')">COPY</button>
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center border-t border-gray-800 pt-10">
+                        <div class="lg:col-span-4">
+                            <div class="img-stack" onclick="toggleGallery('gallery-pigeon-b')">
+                                <div class="stack-layer layer-3 ratio-3-4"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_aggr_56b7aacd-ead8-49a2-a711-74d1564ffa98_2.png"></div>
+                                <div class="stack-layer layer-2 ratio-3-4"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_aggr_56b7aacd-ead8-49a2-a711-74d1564ffa98_1.png"></div>
+                                <div class="stack-layer layer-1 ratio-3-4">
+                                    <img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_aggr_00e3781d-8598-4122-9953-d4824e7b454c_3.png">
+                                    <div class="absolute inset-0 bg-black/70 flex flex-col items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                                        <span class="text-white font-bold text-[10px] tracking-widest border border-white px-4 py-2">展开涂鸦风库</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                            <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_aggr_00e3781d-8598-4122-9953-d4824e7b454c_3.png"></div>
-                            <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_aggr_56b7aacd-ead8-49a2-a711-74d1564ffa98_1.png"></div>
-                            <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_aggr_56b7aacd-ead8-49a2-a711-74d1564ffa98_2.png"></div>
-                            <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_aggr_a90ba879-e24a-4fbe-9cd7-303681fa932e_3.png"></div>
+                        <div class="lg:col-span-8">
+                            <div class="prompt-box">
+                                <div class="text-orange-500 font-bold text-xs mb-2 uppercase tracking-widest">Style B: 模板涂鸦风格 (Stencil Spray)</div>
+                                <span id="p-pigeon-2" data-suffix=" --v 7.0 --ar 3:4">T-shirt graphic design, "Hardcore Peace Pigeon", aggressive pigeon silhouette made of fragmented tactical vest parts and gunmetal, military stencil spray paint style, rugged texture, high contrast black and orange accents, utilitarian streetwear aesthetic, flat background</span>
+                                <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 3:4</div>
+                                <button class="absolute top-4 right-4 btn-copy" onclick="copyText(this, 'p-pigeon-2')">COPY</button>
+                            </div>
+                            <div class="kw-hint mt-2">中文关键词：侵略性鸽子剪影、碎片化战术背心与枪械金属构成、军事模板喷漆风格、粗糙纹理、实用主义街头美学</div>
                         </div>
+                    </div>
+                    <div id="gallery-pigeon-b" class="hidden-gallery grid-cols-2 lg:grid-cols-4 gap-6 mt-6 border-t border-gray-800 pt-8">
+                        <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_aggr_00e3781d-8598-4122-9953-d4824e7b454c_3.png"></div>
+                        <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_aggr_56b7aacd-ead8-49a2-a711-74d1564ffa98_1.png"></div>
+                        <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_aggr_56b7aacd-ead8-49a2-a711-74d1564ffa98_2.png"></div>
+                        <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_aggr_a90ba879-e24a-4fbe-9cd7-303681fa932e_3.png"></div>
                     </div>
 
                     <!-- Style C: 工业渲染 -->
-                    <div class="border-t border-gray-800 pt-8">
-                        <div class="prompt-box mb-6">
-                            <div class="text-orange-500 font-bold text-xs mb-2 uppercase tracking-widest">Style C: 工业渲染风格 (Cyber-Industrial)</div>
-                            <span id="p-pigeon-3" data-suffix=" --v 7.0 --ar 3:4">T-shirt graphic design, "Hardcore Peace Pigeon", 3D industrial render of a robotic pigeon assembled from matte black Cordura fabric, YKK zippers, and metallic tactical hardware, hyper-realistic, studio lighting, bold composition, dark tactical aesthetic</span>
-                            <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 3:4</div>
-                            <button class="absolute top-4 right-4 btn-copy" onclick="copyText(this, 'p-pigeon-3')">COPY</button>
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center border-t border-gray-800 pt-10">
+                        <div class="lg:col-span-4">
+                            <div class="img-stack" onclick="toggleGallery('gallery-pigeon-c')">
+                                <div class="stack-layer layer-3 ratio-3-4"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_3D_i_19f4dfab-696c-46ba-bca0-c66025b9ec49_3.png"></div>
+                                <div class="stack-layer layer-2 ratio-3-4"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_3D_i_19f4dfab-696c-46ba-bca0-c66025b9ec49_1.png"></div>
+                                <div class="stack-layer layer-1 ratio-3-4">
+                                    <img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_3D_i_19f4dfab-696c-46ba-bca0-c66025b9ec49_0.png">
+                                    <div class="absolute inset-0 bg-black/70 flex flex-col items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                                        <span class="text-white font-bold text-[10px] tracking-widest border border-white px-4 py-2">展开渲染风库</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                            <div class="empty-slot"><i class="fas fa-image"></i>待补充 Style C 素材</div>
-                            <div class="empty-slot"><i class="fas fa-image"></i>待补充 Style C 素材</div>
-                            <div class="empty-slot"><i class="fas fa-image"></i>待补充 Style C 素材</div>
-                            <div class="empty-slot"><i class="fas fa-image"></i>待补充 Style C 素材</div>
+                        <div class="lg:col-span-8">
+                            <div class="prompt-box">
+                                <div class="text-orange-500 font-bold text-xs mb-2 uppercase tracking-widest">Style C: 工业渲染风格 (Cyber-Industrial)</div>
+                                <span id="p-pigeon-3" data-suffix=" --v 7.0 --ar 3:4">T-shirt graphic design, "Hardcore Peace Pigeon", 3D industrial render of a robotic pigeon assembled from matte black Cordura fabric, YKK zippers, and metallic tactical hardware, hyper-realistic, studio lighting, bold composition, dark tactical aesthetic</span>
+                                <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 3:4</div>
+                                <button class="absolute top-4 right-4 btn-copy" onclick="copyText(this, 'p-pigeon-3')">COPY</button>
+                            </div>
+                            <div class="kw-hint mt-2">中文关键词：3D工业渲染、哑光黑色Cordura面料组装的机器鸽、战术五金配件、超写实、影棚照明、暗黑战术美学</div>
                         </div>
+                    </div>
+                    <div id="gallery-pigeon-c" class="hidden-gallery grid-cols-2 lg:grid-cols-4 gap-6 mt-6 border-t border-gray-800 pt-8">
+                        <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_3D_i_19f4dfab-696c-46ba-bca0-c66025b9ec49_0.png"></div>
+                        <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_3D_i_19f4dfab-696c-46ba-bca0-c66025b9ec49_1.png"></div>
+                        <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_3D_i_19f4dfab-696c-46ba-bca0-c66025b9ec49_3.png"></div>
+                        <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_3D_i_70e50179-8b3a-4ccb-87cd-ec7a2a1f7764_3.png"></div>
+                        <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_3D_i_b86159df-1250-4bcb-964c-0db7224b798b_0.png"></div>
+                        <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_3D_i_c1d96cdc-1947-452e-84e6-5d93959867d2_0.png"></div>
+                        <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_3D_i_c1d96cdc-1947-452e-84e6-5d93959867d2_1.png"></div>
+                        <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_3D_i_c1d96cdc-1947-452e-84e6-5d93959867d2_3.png"></div>
                     </div>
                 </div>
             </div>
@@ -680,97 +738,108 @@
         <div class="space-y-12">
             <!-- Avatar 1: 城市战术通勤 -->
             <div class="card-dark p-8 group">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                    <div class="lg:col-span-3">
-                        <div class="empty-slot ratio-3-4"><i class="fas fa-user-tie text-3xl mb-2"></i>待补充数字人 A：城市干预者</div>
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h4 class="text-xl font-bold text-white uppercase italic brand-font tracking-widest">档案代号：Alpha-01 (城市干预者)</h4>
+                        <div class="flex flex-wrap gap-2 mt-3">
+                            <span class="word-cloud-tag primary">用户画像：城市战术通勤</span>
+                            <span class="word-cloud-tag">30-45岁</span>
+                            <span class="word-cloud-tag">体制内/企业高管</span>
+                            <span class="word-cloud-tag">专业利落</span>
+                        </div>
                     </div>
-                    <div class="lg:col-span-9 space-y-4">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h4 class="text-xl font-bold text-white uppercase italic brand-font tracking-widest">档案代号：Alpha-01 (城市干预者)</h4>
-                                <div class="flex flex-wrap gap-2 mt-3">
-                                    <span class="word-cloud-tag primary">用户画像：城市战术通勤</span>
-                                    <span class="word-cloud-tag">30-45岁</span>
-                                    <span class="word-cloud-tag">体制内/企业高管</span>
-                                    <span class="word-cloud-tag">专业利落</span>
-                                </div>
-                            </div>
-                            <button class="btn-copy" onclick="copyText(this, 'p-avatar-1')">COPY PROMPT</button>
-                        </div>
-                        <div class="text-xs text-gray-400 bg-gray-900 p-4 rounded border border-gray-800 leading-relaxed">
-                            <span class="text-orange-500 font-bold block mb-1">【角色设定】</span>
-                            穿梭于 CBD 玻璃幕墙与深夜高架桥之间的“西装暴徒”。极度自律，对装备的平整度与功能性有严苛要求。夹克不仅是御寒物，更是他应对突发商战与通勤的“软性装甲”。
-                        </div>
-                        <div class="prompt-box">
-                            <span id="p-avatar-1" data-suffix=" --v 7.0 --ar 3:4">Cinematic portrait of a 35-year-old hardened Chinese male corporate executive, short neat hair, sharp jawline, wearing a sleek minimalist dark gray tactical administrative jacket, standing in a modern glass office building overlooking a cyberpunk megacity at dusk, moody lighting, professional yet dangerous, shot on 85mm lens, hyper-realistic</span>
-                            <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 3:4</div>
-                        </div>
-                        <div class="kw-hint">中文关键词：35岁中国男性、企业高管、干练短发、极简深灰战术行政夹克、现代玻璃办公楼、俯瞰黄昏城市、冷峻氛围、专业且危险的质感、电影级肖像</div>
+                </div>
+                <div class="text-xs text-gray-400 bg-gray-900 p-4 rounded border border-gray-800 leading-relaxed mb-6">
+                    <span class="text-orange-500 font-bold block mb-1">【角色设定】</span>
+                    穿梭于 CBD 玻璃幕墙与深夜高架桥之间的“西装暴徒”。极度自律，对装备的平整度与功能性有严苛要求。夹克不仅是御寒物，更是他应对突发商战与通勤的“软性装甲”。
+                </div>
+
+                <!-- 大全景图封面 (16:9) -->
+                <div class="relative cursor-pointer group/pano overflow-hidden rounded border border-gray-700" onclick="toggleGallery('gallery-avatar-1')">
+                    <div class="empty-slot" style="aspect-ratio: 16/9; font-size: 16px;">
+                        <i class="fas fa-image text-4xl mb-2"></i>待补充：Alpha-01 大全景环境封面图 (16:9)
                     </div>
+                    <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover/pano:opacity-100 transition-opacity">
+                        <span class="text-white font-bold tracking-widest border border-white px-6 py-2 uppercase">点击展开角色多维图库</span>
+                    </div>
+                </div>
+
+                <!-- 隐藏的 3:4 细节图库 -->
+                <div id="gallery-avatar-1" class="hidden-gallery grid-cols-2 lg:grid-cols-4 gap-6 mt-8 border-t border-gray-800 pt-8">
+                    <div class="empty-slot"><i class="fas fa-user"></i>全身穿搭展示 (3:4)</div>
+                    <div class="empty-slot"><i class="fas fa-user-tie"></i>半身特写细节 (3:4)</div>
+                    <div class="empty-slot"><i class="fas fa-portrait"></i>面部大头照 (3:4)</div>
+                    <div class="empty-slot"><i class="fas fa-camera"></i>多角度氛围图 (3:4)</div>
                 </div>
             </div>
 
             <!-- Avatar 2: 轻户外极客 -->
             <div class="card-dark p-8 group">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                    <div class="lg:col-span-3">
-                        <div class="empty-slot ratio-3-4"><i class="fas fa-mountain text-3xl mb-2"></i>待补充数字人 B：全地形探索者</div>
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h4 class="text-xl font-bold text-white uppercase italic brand-font tracking-widest">档案代号：Delta-04 (全地形探索者)</h4>
+                        <div class="flex flex-wrap gap-2 mt-3">
+                            <span class="word-cloud-tag primary">用户画像：轻户外装备玩家</span>
+                            <span class="word-cloud-tag">26-40岁</span>
+                            <span class="word-cloud-tag">科技极客/工程师</span>
+                            <span class="word-cloud-tag">敏捷自由</span>
+                        </div>
                     </div>
-                    <div class="lg:col-span-9 space-y-4">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h4 class="text-xl font-bold text-white uppercase italic brand-font tracking-widest">档案代号：Delta-04 (全地形探索者)</h4>
-                                <div class="flex flex-wrap gap-2 mt-3">
-                                    <span class="word-cloud-tag primary">用户画像：轻户外装备玩家</span>
-                                    <span class="word-cloud-tag">26-40岁</span>
-                                    <span class="word-cloud-tag">科技极客/工程师</span>
-                                    <span class="word-cloud-tag">敏捷自由</span>
-                                </div>
-                            </div>
-                            <button class="btn-copy" onclick="copyText(this, 'p-avatar-2')">COPY PROMPT</button>
-                        </div>
-                        <div class="text-xs text-gray-400 bg-gray-900 p-4 rounded border border-gray-800 leading-relaxed">
-                            <span class="text-orange-500 font-bold block mb-1">【角色设定】</span>
-                            科技公司的底层逻辑架构师，周末的全地形越野玩家。用数据丈量生活，对材质的透气率与毫米级风洞孔位如数家珍。服装是他“连接城市与自然”的硬件外设。
-                        </div>
-                        <div class="prompt-box">
-                            <span id="p-avatar-2" data-suffix=" --v 7.0 --ar 3:4">Cinematic portrait of a 28-year-old agile Chinese male tech engineer, wearing a slate blue lightweight tactical duty jacket with laser-cut vents, standing in a misty pine forest trail, subtle rain, high-tech outdoor aesthetic, sharp features, relaxed but alert, highly detailed fabric texture, cold and natural lighting</span>
-                            <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 3:4</div>
-                        </div>
-                        <div class="kw-hint">中文关键词：28岁中国男性、敏捷的科技工程师、雾霾蓝轻量战术夹克、激光切割通风孔、迷雾松林小径、细雨、高科技户外美学、警觉而放松、极具细节的面料纹理</div>
+                </div>
+                <div class="text-xs text-gray-400 bg-gray-900 p-4 rounded border border-gray-800 leading-relaxed mb-6">
+                    <span class="text-orange-500 font-bold block mb-1">【角色设定】</span>
+                    科技公司的底层逻辑架构师，周末的全地形越野玩家。用数据丈量生活，对材质的透气率与毫米级风洞孔位如数家珍。服装是他“连接城市与自然”的硬件外设。
+                </div>
+
+                <div class="relative cursor-pointer group/pano overflow-hidden rounded border border-gray-700" onclick="toggleGallery('gallery-avatar-2')">
+                    <div class="empty-slot" style="aspect-ratio: 16/9; font-size: 16px;">
+                        <i class="fas fa-image text-4xl mb-2"></i>待补充：Delta-04 大全景环境封面图 (16:9)
                     </div>
+                    <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover/pano:opacity-100 transition-opacity">
+                        <span class="text-white font-bold tracking-widest border border-white px-6 py-2 uppercase">点击展开角色多维图库</span>
+                    </div>
+                </div>
+
+                <div id="gallery-avatar-2" class="hidden-gallery grid-cols-2 lg:grid-cols-4 gap-6 mt-8 border-t border-gray-800 pt-8">
+                    <div class="empty-slot"><i class="fas fa-user"></i>全身穿搭展示 (3:4)</div>
+                    <div class="empty-slot"><i class="fas fa-user-tie"></i>半身特写细节 (3:4)</div>
+                    <div class="empty-slot"><i class="fas fa-portrait"></i>面部大头照 (3:4)</div>
+                    <div class="empty-slot"><i class="fas fa-camera"></i>多角度氛围图 (3:4)</div>
                 </div>
             </div>
 
             <!-- Avatar 3: 稳定复购盘 -->
             <div class="card-dark p-8 group">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                    <div class="lg:col-span-3">
-                        <div class="empty-slot ratio-3-4"><i class="fas fa-shield-alt text-3xl mb-2"></i>待补充数字人 C：秩序捍卫者</div>
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h4 class="text-xl font-bold text-white uppercase italic brand-font tracking-widest">档案代号：Veteran-09 (秩序捍卫者)</h4>
+                        <div class="flex flex-wrap gap-2 mt-3">
+                            <span class="word-cloud-tag primary">用户画像：中年稳定复购盘</span>
+                            <span class="word-cloud-tag">45-55岁</span>
+                            <span class="word-cloud-tag">退役转业/国企中坚</span>
+                            <span class="word-cloud-tag">绝对可靠</span>
+                        </div>
                     </div>
-                    <div class="lg:col-span-9 space-y-4">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h4 class="text-xl font-bold text-white uppercase italic brand-font tracking-widest">档案代号：Veteran-09 (秩序捍卫者)</h4>
-                                <div class="flex flex-wrap gap-2 mt-3">
-                                    <span class="word-cloud-tag primary">用户画像：中年稳定复购盘</span>
-                                    <span class="word-cloud-tag">45-55岁</span>
-                                    <span class="word-cloud-tag">退役转业/国企中坚</span>
-                                    <span class="word-cloud-tag">绝对可靠</span>
-                                </div>
-                            </div>
-                            <button class="btn-copy" onclick="copyText(this, 'p-avatar-3')">COPY PROMPT</button>
-                        </div>
-                        <div class="text-xs text-gray-400 bg-gray-900 p-4 rounded border border-gray-800 leading-relaxed">
-                            <span class="text-orange-500 font-bold block mb-1">【角色设定】</span>
-                            曾经历过风浪的体制内中坚力量。厌恶浮夸，信奉“经典即永恒”。衣服上的每道褶皱都代表着阅历，他需要的不是时装，而是能在任何风雨中提供绝对安全感的“战壕”。
-                        </div>
-                        <div class="prompt-box">
-                            <span id="p-avatar-3" data-suffix=" --v 7.0 --ar 3:4">Cinematic portrait of a 48-year-old resolute Chinese male veteran, weathered but handsome face, wearing a classic dark olive green heavy-duty tactical jacket, standing next to a rugged off-road vehicle in a dimly lit urban alley, gritty realism, mature and dependable, warm cinematic lighting, high contrast</span>
-                            <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 3:4</div>
-                        </div>
-                        <div class="kw-hint">中文关键词：48岁中国男性、坚毅的退役老兵、饱经风霜的英俊面庞、经典暗军绿色重型战术夹克、越野车旁、幽暗城市巷道、粗犷写实、成熟可靠、温暖电影光</div>
+                </div>
+                <div class="text-xs text-gray-400 bg-gray-900 p-4 rounded border border-gray-800 leading-relaxed mb-6">
+                    <span class="text-orange-500 font-bold block mb-1">【角色设定】</span>
+                    曾经历过风浪的体制内中坚力量。厌恶浮夸，信奉“经典即永恒”。衣服上的每道褶皱都代表着阅历，他需要的不是时装，而是能在任何风雨中提供绝对安全感的“战壕”。
+                </div>
+
+                <div class="relative cursor-pointer group/pano overflow-hidden rounded border border-gray-700" onclick="toggleGallery('gallery-avatar-3')">
+                    <div class="empty-slot" style="aspect-ratio: 16/9; font-size: 16px;">
+                        <i class="fas fa-image text-4xl mb-2"></i>待补充：Veteran-09 大全景环境封面图 (16:9)
                     </div>
+                    <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover/pano:opacity-100 transition-opacity">
+                        <span class="text-white font-bold tracking-widest border border-white px-6 py-2 uppercase">点击展开角色多维图库</span>
+                    </div>
+                </div>
+
+                <div id="gallery-avatar-3" class="hidden-gallery grid-cols-2 lg:grid-cols-4 gap-6 mt-8 border-t border-gray-800 pt-8">
+                    <div class="empty-slot"><i class="fas fa-user"></i>全身穿搭展示 (3:4)</div>
+                    <div class="empty-slot"><i class="fas fa-user-tie"></i>半身特写细节 (3:4)</div>
+                    <div class="empty-slot"><i class="fas fa-portrait"></i>面部大头照 (3:4)</div>
+                    <div class="empty-slot"><i class="fas fa-camera"></i>多角度氛围图 (3:4)</div>
                 </div>
             </div>
 
