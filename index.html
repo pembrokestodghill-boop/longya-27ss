@@ -44,27 +44,29 @@
         .img-stack {
             position: relative;
             width: 100%;
-            max-width: 300px;
+            max-width: 280px;
             margin: 0 auto;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
         }
         .img-stack:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
         }
         .stack-layer {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
+            top: 0; left: 0; width: 100%;
             border-radius: 6px;
             border: 1px solid #30363d;
             background: #1c2128;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
         }
         .layer-1 { z-index: 3; position: relative; }
-        .layer-2 { z-index: 2; transform: translate(12px, 12px) rotate(2deg); opacity: 0.6; }
-        .layer-3 { z-index: 1; transform: translate(24px, 24px) rotate(4deg); opacity: 0.3; }
+        .layer-2 { z-index: 2; transform: translate(12px, 12px); opacity: 0.5; }
+        .layer-3 { z-index: 1; transform: translate(24px, 24px); opacity: 0.2; }
+        
+        .img-stack:hover .layer-2 { transform: translate(20px, 20px) rotate(2deg); }
+        .img-stack:hover .layer-3 { transform: translate(40px, 40px) rotate(4deg); }
 
         .btn-copy {
             background: #f97316;
@@ -74,7 +76,6 @@
             font-size: 11px;
             font-weight: bold;
             text-transform: uppercase;
-            transition: all 0.2s;
         }
         .btn-copy:hover {
             background: #fb923c;
@@ -91,15 +92,15 @@
             border-radius: 4px;
             position: relative;
         }
-        /* 技术脚标样式 */
+        /* 技术脚标 */
         .tech-footer {
             display: inline-flex;
             align-items: center;
             gap: 8px;
             margin-top: 12px;
             padding: 4px 10px;
-            background: rgba(249, 115, 22, 0.1);
-            border: 1px solid rgba(249, 115, 22, 0.3);
+            background: rgba(249, 115, 22, 0.05);
+            border: 1px solid rgba(249, 115, 22, 0.2);
             border-radius: 4px;
             font-size: 10px;
             color: #f97316;
@@ -114,47 +115,27 @@
 
         .word-cloud-tag {
             display: inline-block;
-            padding: 4px 14px;
-            margin: 5px;
-            border-radius: 20px;
-            border: 1px solid #30363d;
-            font-size: 11px;
-            color: #8b949e;
-            background: rgba(48, 54, 61, 0.2);
+            padding: 4px 14px; margin: 5px;
+            border-radius: 20px; border: 1px solid #30363d;
+            font-size: 11px; color: #8b949e; background: rgba(48, 54, 61, 0.2);
         }
-        .word-cloud-tag.primary {
-            border-color: #f97316;
-            color: #fff;
-            background: rgba(249, 115, 22, 0.1);
-        }
+        .word-cloud-tag.primary { border-color: #f97316; color: #fff; background: rgba(249, 115, 22, 0.1); }
 
         #lightbox {
-            display: none;
-            position: fixed;
+            display: none; position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 1000;
-            justify-content: center; align-items: center;
-            cursor: zoom-out;
+            background: rgba(0,0,0,0.95); z-index: 1000;
+            justify-content: center; align-items: center; cursor: zoom-out;
         }
-        #lightbox img { max-width: 90%; max-height: 90%; }
+        #lightbox img { max-width: 90%; max-height: 90%; box-shadow: 0 0 50px rgba(0,0,0,1); }
         
-        /* 库区块标题 */
-        .library-title {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #fff;
-            letter-spacing: -0.025em;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .library-number {
-            color: #f97316;
-            font-family: 'Barlow Condensed';
-            font-style: italic;
-        }
+        .library-title { font-size: 1.5rem; font-weight: 800; color: #fff; margin-bottom: 1rem; display: flex; align-items: center; gap: 12px; }
+        .library-number { color: #f97316; font-family: 'Barlow Condensed'; font-style: italic; }
+
+        /* 隐藏库 */
+        .hidden-gallery { display: none; }
+        .gallery-active { display: grid; animation: fadeIn 0.5s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body class="leading-relaxed">
@@ -171,10 +152,10 @@
                 <h1 class="text-xl font-bold brand-font text-white uppercase tracking-tighter">Dragon Tooth AI Playbook</h1>
             </div>
             <nav class="hidden lg:flex space-x-6 text-[10px] uppercase font-bold tracking-widest text-gray-400">
-                <a href="#strategy" class="hover:text-orange-500">战略矩阵</a>
+                <a href="#bundle" class="hover:text-orange-500">项目封装</a>
+                <a href="#strategy" class="hover:text-orange-500">战略资产</a>
                 <a href="#mother" class="hover:text-orange-500">母款原型</a>
-                <a href="#mj-styles" class="hover:text-orange-500">设计库</a>
-                <a href="#prints" class="hover:text-orange-500">印花专案</a>
+                <a href="#prints" class="hover:text-orange-500 text-orange-500">印花资产库</a>
                 <a href="#tech-library" class="hover:text-orange-500">技术规范</a>
             </nav>
         </div>
@@ -185,85 +166,92 @@
         <div class="card-dark p-8 border-l-4 border-l-orange-600 relative overflow-hidden bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]">
             <div class="flex justify-between items-start mb-8 relative z-10">
                 <div>
-                    <h3 class="text-2xl font-bold text-white uppercase brand-font italic tracking-widest">项目全量封装包 (v27SS_Update)</h3>
-                    <p class="text-xs text-gray-500 mt-2 italic">投喂此指令以同步龙牙 27SS 全线设计逻辑与 27 文化衫“硬核和平鸽”价值观。</p>
+                    <h3 class="text-2xl font-bold text-white uppercase brand-font italic tracking-widest">龙牙项目全量封装包 (27SS + 27文化衫)</h3>
+                    <p class="text-xs text-gray-500 mt-2 italic">投喂此指令以同步龙牙 27SS 及文化衫“硬核和平鸽”战略逻辑。</p>
                 </div>
-                <button class="btn-copy" onclick="copyBundle()">一键注入背景</button>
+                <button class="btn-copy" onclick="copyBundle()">复制全量指令</button>
             </div>
             <div class="flex flex-wrap mb-4">
-                <span class="word-cloud-tag primary">以战促和</span><span class="word-cloud-tag primary">硬核和平鸽</span><span class="word-cloud-tag">战/隐/暗系列</span><span class="word-cloud-tag">Cordura PRO</span><span class="word-cloud-tag primary">禁止可爱插画</span>
+                <span class="word-cloud-tag primary">以战促和</span><span class="word-cloud-tag primary">硬核和平鸽</span><span class="word-cloud-tag">战/隐/暗系列</span><span class="word-cloud-tag">Cordura PRO</span><span class="word-cloud-tag primary">结构升级与增长重构</span>
             </div>
-            <pre id="bundle-content" class="hidden"># 龙牙 27SS 全量上下文：品牌关键词(对抗/生存/极致机能)，视觉风格(硬朗/高工业感)，禁止(赛博/波普/涂鸦)。文化衫主题：硬核和平鸽。和平是打出来的。</pre>
+            <pre id="bundle-content" class="hidden"># 龙牙 (Dragon Tooth) 27SS 设计任务全量上下文：品牌关键词(对抗/生存/极致机能)，视觉风格(硬朗/高工业感)。27文化衫主题：硬核和平鸽(和平是打出来的)。禁止：波普/涂鸦/可爱插画。母版资产：战虎、雪狼、黑豹等系列。</pre>
         </div>
     </section>
 
-    <!-- Phase 1: 矩阵 -->
+    <!-- Phase 1: 战略资产矩阵 (找回资料) -->
     <section id="strategy" class="py-12 container mx-auto px-6">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div class="card-dark p-6">
                 <h3 class="library-title"><span class="library-number">01</span> 经营分工矩阵</h3>
                 <table>
-                    <thead><tr><th>体系</th><th>定位</th><th>目标</th></tr></thead>
+                    <thead><tr><th>体系</th><th>定位</th><th>核心任务</th></tr></thead>
                     <tbody>
-                        <tr><td class="font-bold text-orange-500">战系列</td><td>品牌脸</td><td>拉高识别度与点击</td></tr>
-                        <tr><td>隐系列</td><td>规模盘</td><td>提升主销转化率</td></tr>
-                        <tr><td>暗系列</td><td>轻商务</td><td>行政场景覆盖</td></tr>
+                        <tr><td class="font-bold text-orange-500">战系列</td><td>品牌脸/形象线</td><td>拉高品牌识别与首屏点击</td></tr>
+                        <tr><td class="font-bold">隐系列</td><td>规模盘/主销线</td><td>提升主销转化率</td></tr>
+                        <tr><td class="font-bold">暗系列</td><td>轻商务/行政线</td><td>覆盖行政办公场景</td></tr>
+                        <tr><td class="font-bold">风格拓展</td><td>飞行夹克 (MA-1)</td><td>承接春夏风格场景需求</td></tr>
                     </tbody>
                 </table>
             </div>
             <div class="card-dark p-6">
-                <h3 class="library-title"><span class="library-number">02</span> KANO 需求分层</h3>
-                <div class="grid grid-cols-2 gap-4 text-[11px]">
-                    <div class="p-3 bg-gray-900 border border-gray-800 rounded">
-                        <span class="text-orange-500 font-bold block mb-1">必备属性</span>
-                        耐磨、不臃肿、口袋组织
+                <h3 class="library-title"><span class="library-number">02</span> 核心母版审计 (Asset Audit)</h3>
+                <div class="space-y-4 text-[11px]">
+                    <div class="bg-gray-900 p-3 rounded border border-gray-800">
+                        <span class="text-orange-500 font-bold block mb-1">战系列：品牌形象盘</span>
+                        战虎、特战、苍狼、雪虎、寒锋PRO、潜伏者、破锋者
                     </div>
-                    <div class="p-3 bg-gray-900 border border-gray-800 rounded">
-                        <span class="text-orange-500 font-bold block mb-1">期望属性</span>
-                        轻量、透气、防静电
+                    <div class="bg-gray-900 p-3 rounded border border-gray-800">
+                        <span class="text-orange-500 font-bold block mb-1">隐系列：主销规模盘</span>
+                        雪狼、飞虎、影豹、轻鹿、潜狼、天仓、游隼、B4
+                    </div>
+                    <div class="bg-gray-900 p-3 rounded border border-gray-800">
+                        <span class="text-orange-500 font-bold block mb-1">暗系列：行政轻商务盘</span>
+                        黑豹、暗骥、暗骥PRO
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Phase 5: 印花与文化衫资产库 (核心升级区) -->
+    <!-- Phase 5: 印花与文化衫资产库 (核心重构区) -->
     <section id="prints" class="py-20 container mx-auto px-6 bg-gray-950 rounded-3xl">
         <div class="text-center mb-16">
-            <h3 class="text-3xl font-bold text-white brand-font uppercase italic tracking-widest">Phase 5: 印花与文化衫资产库</h3>
-            <p class="text-gray-500 text-xs mt-2 uppercase">Print Direction & T-Shirt Asset Library</p>
+            <h2 class="text-3xl font-bold text-white brand-font uppercase italic tracking-widest">Phase 5: 印花与文化衫设计资产库</h2>
+            <p class="text-gray-500 text-[10px] mt-2 uppercase tracking-widest">Dragon Tooth Print Directions & Culture T-Shirt Gallery</p>
         </div>
 
-        <div class="space-y-32">
-            <!-- 印花库项模板: #07 硬核和平鸽 -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start" id="lib-pigeon">
-                <div class="lg:col-span-4">
-                    <div class="img-stack" onclick="scrollToGallery('gallery-pigeon')">
-                        <div class="stack-layer layer-3 ratio-3-4"><img src="./images/zhou.zichen_A_bold_tactical_branding_graphic_featuring_the_wo_ed8d28a1-7403-49e8-a625-a601552ce8ef_1.png"></div>
-                        <div class="stack-layer layer-2 ratio-3-4"><img src="./images/zhou.zichen_A_bold_tactical_branding_graphic_featuring_the_wo_ed8d28a1-7403-49e8-a625-a601552ce8ef_2.png"></div>
-                        <div class="stack-layer layer-1 ratio-3-4">
-                            <img src="./images/zhou.zichen_A_bold_tactical_branding_graphic_featuring_the_wo_a15a6427-f89d-462b-a723-e920e1b9b6d4_1.png">
-                            <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-                                <span class="text-white font-bold text-xs tracking-widest border border-white px-4 py-2">进入资产库</span>
+        <div class="space-y-12">
+            <!-- #07 文化衫专项: 硬核和平鸽 -->
+            <div class="card-dark p-10 group">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-4">
+                        <div class="img-stack" onclick="toggleGallery('gallery-pigeon')">
+                            <div class="stack-layer layer-3 ratio-3-4"><img src="./images/zhou.zichen_A_bold_tactical_branding_graphic_featuring_the_wo_ed8d28a1-7403-49e8-a625-a601552ce8ef_1.png"></div>
+                            <div class="stack-layer layer-2 ratio-3-4"><img src="./images/zhou.zichen_A_bold_tactical_branding_graphic_featuring_the_wo_ed8d28a1-7403-49e8-a625-a601552ce8ef_2.png"></div>
+                            <div class="stack-layer layer-1 ratio-3-4">
+                                <img src="./images/zhou.zichen_A_bold_tactical_branding_graphic_featuring_the_wo_a15a6427-f89d-462b-a723-e920e1b9b6d4_1.png">
+                                <div class="absolute inset-0 bg-black/60 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <span class="text-white font-bold text-[10px] tracking-widest border border-white px-4 py-2 uppercase">点击打开库</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="lg:col-span-8">
-                    <h4 class="library-title"><span class="library-number">#07</span> 硬核和平鸽 (Hardcore Peace Pigeon)</h4>
-                    <p class="text-sm text-gray-400 mb-6 leading-relaxed">基于“以战促和”逻辑，鸽子符号机械化。严禁波普艺术，鸽子由战术装具、弹药零件构成，体现防御与力量的共生。</p>
-                    <div class="prompt-box">
-                        <span id="prompt-pigeon">T-shirt graphic design, "Hardcore Peace Pigeon", mechanical pigeon made of tactical gear, ammo components, and bullet parts, military schematic style, technical illustration, monochrome, high industrial aesthetic, clean vector lines, on light gray background</span>
-                        <div class="tech-footer">
-                            <i class="fas fa-microchip"></i> MODEL: MIDJOURNEY V7.0
-                            <span class="mx-2 opacity-30">|</span>
-                            <i class="fas fa-expand"></i> AR: 3:4
+                    <div class="lg:col-span-8">
+                        <h4 class="library-title"><span class="library-number">#07</span> 硬核和平鸽 (Hardcore Peace Pigeon)</h4>
+                        <p class="text-sm text-gray-400 mb-6 leading-relaxed">“和平是打出来的”。严禁出现柔弱形象。鸽子符号机械化改造，由战术装具、弹药零件构成，体现防御与力量的共存。</p>
+                        <div class="prompt-box">
+                            <span id="p-pigeon">T-shirt graphic design, "Hardcore Peace Pigeon", mechanical pigeon made of tactical gear, ammo components, and bullet parts, military schematic style, technical illustration, monochrome, high industrial aesthetic, clean vector lines, on light gray background</span>
+                            <div class="tech-footer">
+                                <i class="fas fa-microchip"></i> MODEL: MIDJOURNEY V7.0
+                                <span class="mx-2 opacity-20">|</span>
+                                <i class="fas fa-expand"></i> ASPECT RATIO 3:4
+                            </div>
+                            <button class="absolute top-4 right-4 btn-copy" onclick="copyText('p-pigeon')">复制 PROMPT</button>
                         </div>
-                        <button class="absolute top-4 right-4 btn-copy" onclick="copyText('prompt-pigeon')">COPY</button>
                     </div>
                 </div>
-                <!-- 隐藏的网格库，点击叠放图后展示 -->
-                <div class="lg:col-span-12 mt-12 grid grid-cols-2 lg:grid-cols-4 gap-6" id="gallery-pigeon">
+                <!-- 展开的图库 -->
+                <div id="gallery-pigeon" class="hidden-gallery grid-cols-2 lg:grid-cols-4 gap-6 mt-12 border-t border-gray-800 pt-10">
                     <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_A_bold_tactical_branding_graphic_featuring_the_wo_ed8d28a1-7403-49e8-a625-a601552ce8ef_1.png"></div>
                     <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_A_bold_tactical_branding_graphic_featuring_the_wo_ed8d28a1-7403-49e8-a625-a601552ce8ef_2.png"></div>
                     <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_A_bold_tactical_branding_graphic_featuring_the_wo_a15a6427-f89d-462b-a723-e920e1b9b6d4_1.png"></div>
@@ -272,24 +260,26 @@
             </div>
 
             <!-- #01 战术地形图 -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start" id="lib-topo">
-                <div class="lg:col-span-4">
-                    <div class="img-stack" onclick="scrollToGallery('gallery-topo')">
-                        <div class="stack-layer layer-3 ratio-3-4"><img src="./images/zhou.zichen_Tactical_topographical_map_graphic_of_a_dense_urb_26b50fa1-7376-4b90-b445-5279f7883498_0.png"></div>
-                        <div class="stack-layer layer-2 ratio-3-4"><img src="./images/zhou.zichen_Tactical_topographical_map_graphic_of_a_dense_urb_26b50fa1-7376-4b90-b445-5279f7883498_3.png"></div>
-                        <div class="stack-layer layer-1 ratio-3-4"><img src="./images/zhou.zichen_Tactical_topographical_map_graphic_of_a_dense_urb_a5887436-7e7b-483e-be92-08b0718f6ac7_0.png"></div>
+            <div class="card-dark p-10 group">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-4">
+                        <div class="img-stack" onclick="toggleGallery('gallery-topo')">
+                            <div class="stack-layer layer-3 ratio-3-4"><img src="./images/zhou.zichen_Tactical_topographical_map_graphic_of_a_dense_urb_26b50fa1-7376-4b90-b445-5279f7883498_0.png"></div>
+                            <div class="stack-layer layer-2 ratio-3-4"><img src="./images/zhou.zichen_Tactical_topographical_map_graphic_of_a_dense_urb_26b50fa1-7376-4b90-b445-5279f7883498_3.png"></div>
+                            <div class="stack-layer layer-1 ratio-3-4"><img src="./images/zhou.zichen_Tactical_topographical_map_graphic_of_a_dense_urb_a5887436-7e7b-483e-be92-08b0718f6ac7_0.png"></div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-8">
+                        <h4 class="library-title"><span class="library-number">#01</span> 战术地形图 (Tactical Topography)</h4>
+                        <p class="text-sm text-gray-400 mb-6">高精细度城市网格、等高线与导航坐标。展现品牌在全球任务场景下的精准定位。适合背部大图或袖章位置。</p>
+                        <div class="prompt-box">
+                            <span id="p-topo">Tactical topographical map graphic of a dense urban environment, stylized with grid coordinates, navigation symbols, and strategic route lines, military cartography aesthetic, industrial palette</span>
+                            <div class="tech-footer"><i class="fas fa-microchip"></i> MODEL: MIDJOURNEY V7.0</div>
+                            <button class="absolute top-4 right-4 btn-copy" onclick="copyText('p-topo')">复制 PROMPT</button>
+                        </div>
                     </div>
                 </div>
-                <div class="lg:col-span-8">
-                    <h4 class="library-title"><span class="library-number">#01</span> 战术地形图 (Tactical Topography)</h4>
-                    <p class="text-sm text-gray-400 mb-6">高精细度城市网格与等高线，结合导航坐标，展现品牌在全球对抗场景中的精准定位感。</p>
-                    <div class="prompt-box">
-                        <span id="prompt-topo">Tactical topographical map graphic of a dense urban environment, stylized with grid coordinates, navigation symbols, and strategic route lines, military cartography aesthetic, industrial color palette</span>
-                        <div class="tech-footer"><i class="fas fa-microchip"></i> MODEL: MIDJOURNEY V7.0</div>
-                        <button class="absolute top-4 right-4 btn-copy" onclick="copyText('prompt-topo')">COPY</button>
-                    </div>
-                </div>
-                <div class="lg:col-span-12 mt-12 grid grid-cols-4 gap-6" id="gallery-topo">
+                <div id="gallery-topo" class="hidden-gallery grid-cols-2 lg:grid-cols-4 gap-6 mt-12 border-t border-gray-800 pt-10">
                     <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_Tactical_topographical_map_graphic_of_a_dense_urb_26b50fa1-7376-4b90-b445-5279f7883498_0.png"></div>
                     <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_Tactical_topographical_map_graphic_of_a_dense_urb_26b50fa1-7376-4b90-b445-5279f7883498_3.png"></div>
                     <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_Tactical_topographical_map_graphic_of_a_dense_urb_a5887436-7e7b-483e-be92-08b0718f6ac7_0.png"></div>
@@ -297,28 +287,31 @@
                 </div>
             </div>
 
-            <!-- 方向 #02 - #06 依此类推... 可快速复用上述结构 -->
+            <!-- 方向 #02, #03, #04, #05, #06 等资料找回并补齐... (逻辑同上) -->
         </div>
     </section>
 
-    <!-- Phase 6: 技术组件标准库 -->
+    <!-- Phase 6: 技术规范 -->
     <section id="tech-library" class="py-20 container mx-auto px-6 border-t border-gray-800">
-        <h3 class="text-2xl font-bold text-white mb-12 brand-font uppercase italic tracking-widest text-center">Phase 6: 技术组件标准库</h3>
+        <h3 class="text-2xl font-bold text-white mb-12 brand-font uppercase italic tracking-widest text-center">Phase 6: 技术组件标准规范</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div class="card-dark p-6">
-                <span class="text-orange-500 font-bold brand-font text-xs uppercase mb-4 block">#01 口袋逻辑</span>
-                <div class="ratio-3-4 border border-dashed border-gray-700 flex items-center justify-center text-gray-700 text-[10px] uppercase">Waiting for Tech-Visuals</div>
+                <span class="text-orange-500 font-bold brand-font text-xs uppercase mb-4 block">#01 隐藏口袋/收纳系统 (Admin/Travel)</span>
+                <div class="ratio-3-4 border border-dashed border-gray-800 flex items-center justify-center text-gray-700 text-[10px] uppercase tracking-widest">Awaiting Tech-Visuals</div>
             </div>
             <div class="card-dark p-6">
-                <span class="text-orange-500 font-bold brand-font text-xs uppercase mb-4 block">#02 散热逻辑</span>
-                <div class="ratio-3-4 border border-dashed border-gray-700 flex items-center justify-center text-gray-700 text-[10px] uppercase">Waiting for Tech-Visuals</div>
+                <span class="text-orange-500 font-bold brand-font text-xs uppercase mb-4 block">#02 风洞散热结构 (Duty/Sun)</span>
+                <div class="ratio-3-4 border border-dashed border-gray-800 flex items-center justify-center text-gray-700 text-[10px] uppercase tracking-widest">Awaiting Tech-Visuals</div>
             </div>
         </div>
     </section>
 
     <footer class="py-20 bg-black border-t border-gray-900 text-center">
         <div class="container mx-auto px-6">
-            <p class="text-gray-600 text-[10px] uppercase tracking-widest">© 2026 Dragon Tooth Design Systems | AI ENHANCED PRODUCT DESIGN</p>
+            <div class="inline-block border border-orange-600 px-6 py-2 mb-6">
+                <span class="text-orange-600 font-bold brand-font uppercase tracking-widest text-[10px] italic">Internal Confidential / 龙牙内部 AI 战略设计资产库</span>
+            </div>
+            <p class="text-gray-700 text-[10px] uppercase tracking-widest">© 2026 Dragon Tooth Design Systems | Powered by AI Enhanced Intelligence</p>
         </div>
     </footer>
 
@@ -335,16 +328,20 @@
         function copyText(id) {
             const text = document.getElementById(id).innerText;
             navigator.clipboard.writeText(text).then(() => {
-                alert('Prompt已成功复制到剪贴板');
+                alert('Prompt已复制！参数已整合为专业脚标。');
             });
         }
-        function scrollToGallery(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'center' });
+        function toggleGallery(id) {
+            const gallery = document.getElementById(id);
+            gallery.classList.toggle('gallery-active');
+            if(gallery.classList.contains('gallery-active')) {
+                gallery.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         }
         function copyBundle() {
             const content = document.getElementById('bundle-content').innerText;
             navigator.clipboard.writeText(content).then(() => {
-                alert('项目全量背景已注入。');
+                alert('龙牙 27SS 全量战略背景已注入 AI 上下文。');
             });
         }
     </script>
