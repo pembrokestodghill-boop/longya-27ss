@@ -18,7 +18,7 @@
         .ratio-3-4 img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
         .ratio-3-4:hover img { transform: scale(1.05); }
         
-        /* 空白占位符 (新增) */
+        /* 空白占位符 */
         .empty-slot { 
             aspect-ratio: 3 / 4; border: 1px dashed #4b5563; background: #0d1117; border-radius: 4px;
             display: flex; flex-direction: column; align-items: center; justify-content: center; 
@@ -36,17 +36,21 @@
         .img-stack:hover .layer-2 { transform: translate(20px, 20px) rotate(2deg); }
         .img-stack:hover .layer-3 { transform: translate(40px, 40px) rotate(4deg); }
 
-        .btn-copy { background: #f97316; color: #000; padding: 6px 16px; border-radius: 4px; font-size: 11px; font-weight: bold; text-transform: uppercase; }
+        .btn-copy { background: #f97316; color: #000; padding: 6px 16px; border-radius: 4px; font-size: 11px; font-weight: bold; text-transform: uppercase; cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid transparent; }
         .btn-copy:hover { background: #fb923c; box-shadow: 0 0 15px rgba(249, 115, 22, 0.4); }
+        .btn-copy.copied { background: #ffffff !important; color: #000000 !important; border-color: #ffffff; box-shadow: 0 0 20px rgba(255,255,255,0.5); }
+
         .prompt-box { background: #000; border: 1px solid #30363d; padding: 16px; font-family: 'Courier New', monospace; font-size: 13px; color: #8b949e; border-radius: 4px; position: relative; line-height: 1.6; }
         
+        .kw-hint { color: #f97316; font-size: 11px; margin-top: 8px; font-weight: bold; opacity: 0.9;}
+
         /* 技术脚标 */
         .tech-footer { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; padding: 4px 10px; background: rgba(249, 115, 22, 0.05); border: 1px solid rgba(249, 115, 22, 0.2); border-radius: 4px; font-size: 10px; color: #f97316; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
 
         table { width: 100%; font-size: 12px; border-collapse: collapse; }
         th, td { border: 1px solid #30363d; padding: 12px; text-align: left; }
         th { background: #21262d; color: #f97316; }
-        .word-cloud-tag { display: inline-block; padding: 4px 14px; margin: 5px; border-radius: 20px; border: 1px solid #30363d; font-size: 11px; color: #8b949e; background: rgba(48, 54, 61, 0.2); }
+        .word-cloud-tag { display: inline-block; padding: 4px 14px; margin: 5px 5px 0 0; border-radius: 20px; border: 1px solid #30363d; font-size: 11px; color: #8b949e; background: rgba(48, 54, 61, 0.2); }
         .word-cloud-tag.primary { border-color: #f97316; color: #fff; background: rgba(249, 115, 22, 0.1); }
 
         #lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; justify-content: center; align-items: center; cursor: zoom-out; }
@@ -58,7 +62,6 @@
         .gallery-active { display: grid; animation: fadeIn 0.5s ease forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
-        /* 特殊高亮容器 */
         .highlight-section { position: relative; }
         .highlight-section::before { content: ''; position: absolute; top: 0; left: -20px; width: 4px; height: 100%; background: #f97316; border-radius: 2px; }
     </style>
@@ -80,7 +83,7 @@
                 <a href="#mj-styles" class="hover:text-orange-500">子款生成库</a>
                 <a href="#comfy" class="hover:text-orange-500">ComfyUI</a>
                 <a href="#prints" class="hover:text-orange-500">印花/文化衫</a>
-                <a href="#tech-library" class="hover:text-orange-500 text-orange-500">研发沙盒(NEW)</a>
+                <a href="#avatar" class="hover:text-orange-500 text-orange-500">品牌数字人</a>
             </nav>
         </div>
     </header>
@@ -91,12 +94,12 @@
             <div class="flex justify-between items-start mb-8 relative z-10">
                 <div>
                     <h3 class="text-2xl font-bold text-white uppercase brand-font italic tracking-widest">龙牙 27SS 及 27文化衫全量封装包</h3>
-                    <p class="text-xs text-gray-500 mt-2 italic">投喂此指令以同步龙牙“硬核和平鸽”价值观与经营矩阵逻辑。</p>
+                    <p class="text-xs text-gray-500 mt-2 italic">投喂此指令以同步龙牙 27SS 全量设计背景、经营矩阵逻辑与文化衫专项价值观。</p>
                 </div>
-                <button class="btn-copy" onclick="copyBundle()">复制全量指令</button>
+                <button class="btn-copy" onclick="copyBundle(this)">一键注入剪贴板</button>
             </div>
             <div class="flex flex-wrap mb-4">
-                <span class="word-cloud-tag primary">和平是打出来的</span><span class="word-cloud-tag primary">硬核和平鸽</span><span class="word-cloud-tag">战/隐/暗系列</span><span class="word-cloud-tag">Cordura PRO</span><span class="word-cloud-tag primary">机械鸽改造</span>
+                <span class="word-cloud-tag primary">全量设计背景</span><span class="word-cloud-tag primary">和平是打出来的</span><span class="word-cloud-tag">战/隐/暗系列</span><span class="word-cloud-tag">Cordura PRO</span><span class="word-cloud-tag primary">机械鸽改造</span>
             </div>
             <pre id="bundle-content" class="hidden">
 # 龙牙 (Dragon Tooth) 27SS 设计任务全量背景
@@ -161,7 +164,7 @@
         </div>
     </section>
 
-    <!-- Phase 2: 母款原型 (找回) -->
+    <!-- Phase 2: 母款原型 -->
     <section id="mother" class="py-12 container mx-auto px-6">
         <h3 class="text-3xl font-bold text-white mb-10 brand-font uppercase italic tracking-widest border-l-4 border-orange-600 pl-4">Phase 2: 经典母款原型 (The Originals)</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -176,11 +179,11 @@
         </div>
     </section>
 
-    <!-- Phase 3: 子款款式进化生成库 (找回并升级为叠放卡片) -->
+    <!-- Phase 3: 子款款式进化生成库 -->
     <section id="mj-styles" class="py-20 container mx-auto px-6 bg-gray-950 rounded-3xl mt-12">
         <div class="text-center mb-16">
             <h2 class="text-3xl font-bold text-white brand-font uppercase italic tracking-widest">Phase 3: 子款款式进化数字库</h2>
-            <p class="text-gray-600 text-[10px] mt-2 uppercase tracking-widest italic">Apparel Generation Library via Midjourney V7</p>
+            <p class="text-gray-600 text-[10px] mt-2 uppercase tracking-widest italic">Apparel Generation Library</p>
         </div>
 
         <div class="space-y-16">
@@ -203,10 +206,11 @@
                         <h4 class="library-title"><span class="library-number">#01</span> 行政战术版 (Admin Tactical - 暗系列)</h4>
                         <p class="text-sm text-gray-400 mb-6">基于母款A重构，移除冗余挂点，采用 Cordura PRO，强化隐藏式口袋与商务极致平整面相。</p>
                         <div class="prompt-box">
-                            <span id="p-admin">Full-body Ghost mannequin shot of a men's high-end tactical administrative jacket, inspired by M65 stand collar silhouette, minimalist tactical design, premium Cordura PRO fabric texture, smooth and anti-wrinkle surface, hidden chest pockets with seamless zippers, charcoal gray, matte finish, sophisticated craftsmanship, industrial aesthetics, seamless commercial studio gray background, cinematic lighting</span>
+                            <span id="p-admin" data-suffix=" --v 7.0 --ar 3:4">Full-body Ghost mannequin shot of a men's high-end tactical administrative jacket, inspired by M65 stand collar silhouette, minimalist tactical design, premium Cordura PRO fabric texture, smooth and anti-wrinkle surface, hidden chest pockets with seamless zippers, charcoal gray, matte finish, sophisticated craftsmanship, industrial aesthetics, seamless commercial studio gray background, cinematic lighting</span>
                             <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 3:4</div>
-                            <button class="absolute top-4 right-4 btn-copy" onclick="copyText('p-admin')">COPY</button>
+                            <button class="absolute top-4 right-4 btn-copy" onclick="copyText(this, 'p-admin')">COPY</button>
                         </div>
+                        <div class="kw-hint">中文关键词：高端行政战术、Cordura PRO 面料、极简设计、哑光质感、隐藏拉链</div>
                     </div>
                 </div>
                 <div id="gallery-admin" class="hidden-gallery grid-cols-2 lg:grid-cols-4 gap-6 mt-12 border-t border-gray-800 pt-10">
@@ -236,10 +240,11 @@
                         <h4 class="library-title"><span class="library-number">#02</span> 轻量执勤版 (Lightweight Duty - 隐系列)</h4>
                         <p class="text-sm text-gray-400 mb-6">追求极致轻量化。强化导电丝微格纹肌理表现，辅以激光切割“风洞”散热设计。</p>
                         <div class="prompt-box">
-                            <span id="p-duty">Full-body Ghost mannequin shot of a lightweight tactical jacket, technical apparel design, micro-grid conductive yarn fabric texture, breathable laser-cut vents under arms, reinforced shoulder patches, tactical stand collar, YKK metallic zippers, olive drab color, rugged but modern, cinematic lighting on textile weave</span>
+                            <span id="p-duty" data-suffix=" --v 7.0 --ar 3:4">Full-body Ghost mannequin shot of a lightweight tactical jacket, technical apparel design, micro-grid conductive yarn fabric texture, breathable laser-cut vents under arms, reinforced shoulder patches, tactical stand collar, YKK metallic zippers, olive drab color, rugged but modern, cinematic lighting on textile weave</span>
                             <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 3:4</div>
-                            <button class="absolute top-4 right-4 btn-copy" onclick="copyText('p-duty')">COPY</button>
+                            <button class="absolute top-4 right-4 btn-copy" onclick="copyText(this, 'p-duty')">COPY</button>
                         </div>
+                        <div class="kw-hint">中文关键词：轻量执勤、微格纹导电丝面料、腋下激光切割通风孔、战术立领、YKK金属拉链</div>
                     </div>
                 </div>
                 <div id="gallery-duty" class="hidden-gallery grid-cols-2 lg:grid-cols-4 gap-6 mt-12 border-t border-gray-800 pt-10">
@@ -268,10 +273,11 @@
                         <h4 class="library-title"><span class="library-number">#03</span> 城市差旅版 (Urban Traveler - 连帽机能)</h4>
                         <p class="text-sm text-gray-400 mb-6">基于母款B，整合 Packable 收纳系统，极简功能主义，科技抗皱尼龙，深藏青色。</p>
                         <div class="prompt-box">
-                            <span id="p-travel">Full-body Ghost mannequin shot of a sleek urban tactical windbreaker with an integrated hood, techwear aesthetic, packable design, lightweight high-tech nylon, multiple hidden utility pockets, dark navy blue, clean lines, minimalist functionalism</span>
+                            <span id="p-travel" data-suffix=" --v 7.0 --ar 3:4">Full-body Ghost mannequin shot of a sleek urban tactical windbreaker with an integrated hood, techwear aesthetic, packable design, lightweight high-tech nylon, multiple hidden utility pockets, dark navy blue, clean lines, minimalist functionalism</span>
                             <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 3:4</div>
-                            <button class="absolute top-4 right-4 btn-copy" onclick="copyText('p-travel')">COPY</button>
+                            <button class="absolute top-4 right-4 btn-copy" onclick="copyText(this, 'p-travel')">COPY</button>
                         </div>
+                        <div class="kw-hint">中文关键词：城市差旅风衣、一体化连帽、机能美学、可收纳设计、轻量科技尼龙、隐藏口袋、深藏青色</div>
                     </div>
                 </div>
                 <div id="gallery-travel" class="hidden-gallery grid-cols-2 lg:grid-cols-4 gap-6 mt-12 border-t border-gray-800 pt-10">
@@ -300,10 +306,11 @@
                         <h4 class="library-title"><span class="library-number">#04</span> 战术防晒版 (Tactical Sun-shield)</h4>
                         <p class="text-sm text-gray-400 mb-6">机能防晒，拒绝廉价感。高透气 UV 材质可视外化，人体工学袖型。</p>
                         <div class="prompt-box">
-                            <span id="p-sun">Full-body Ghost mannequin shot of a men's tactical sun-protection jacket, hooded performance outerwear, ultra-lightweight breathable fabric, light silver-gray color, technical outdoor aesthetic, ergonomic sleeve design, UV protection material with a matte texture</span>
+                            <span id="p-sun" data-suffix=" --v 7.0 --ar 3:4">Full-body Ghost mannequin shot of a men's tactical sun-protection jacket, hooded performance outerwear, ultra-lightweight breathable fabric, light silver-gray color, technical outdoor aesthetic, ergonomic sleeve design, UV protection material with a matte texture</span>
                             <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 3:4</div>
-                            <button class="absolute top-4 right-4 btn-copy" onclick="copyText('p-sun')">COPY</button>
+                            <button class="absolute top-4 right-4 btn-copy" onclick="copyText(this, 'p-sun')">COPY</button>
                         </div>
+                        <div class="kw-hint">中文关键词：男士战术防晒夹克、机能连帽、超轻透气面料、浅银灰色、人体工学袖子、UV防护材料、哑光质感</div>
                     </div>
                 </div>
                 <div id="gallery-sun" class="hidden-gallery grid-cols-2 lg:grid-cols-4 gap-6 mt-12 border-t border-gray-800 pt-10">
@@ -316,7 +323,7 @@
         </div>
     </section>
 
-    <!-- Phase 4: ComfyUI (找回) -->
+    <!-- Phase 4: ComfyUI -->
     <section id="comfy" class="py-20 container mx-auto px-6">
         <h3 class="text-3xl font-bold text-white mb-12 brand-font uppercase italic tracking-widest border-l-4 border-orange-600 pl-4">Phase 4: ComfyUI 工作流与延伸</h3>
         
@@ -354,7 +361,7 @@
         </div>
     </section>
 
-    <!-- Phase 5: 印花与文化衫资产库 (全量补齐) -->
+    <!-- Phase 5: 印花与文化衫资产库 -->
     <section id="prints" class="py-20 container mx-auto px-6 bg-gray-950 rounded-3xl">
         <div class="text-center mb-16">
             <h2 class="text-3xl font-bold text-white brand-font uppercase italic tracking-widest">Phase 5: 印花与文化衫资产库</h2>
@@ -362,40 +369,65 @@
         </div>
 
         <div class="space-y-12">
-            <!-- #07 文化衫专项 -->
+            <!-- #01 文化衫专项：硬核和平鸽 -->
             <div class="card-dark p-8 group highlight-section">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
                     <div class="lg:col-span-4">
-                        <div class="img-stack" onclick="toggleGallery('gallery-pigeon')">
-                            <div class="stack-layer layer-3 ratio-3-4"><img src="./images/zhou.zichen_A_bold_tactical_branding_graphic_featuring_the_wo_ed8d28a1-7403-49e8-a625-a601552ce8ef_1.png"></div>
-                            <div class="stack-layer layer-2 ratio-3-4"><img src="./images/zhou.zichen_A_bold_tactical_branding_graphic_featuring_the_wo_ed8d28a1-7403-49e8-a625-a601552ce8ef_2.png"></div>
+                        <div class="img-stack mt-4" onclick="toggleGallery('gallery-pigeon')">
+                            <div class="stack-layer layer-3 ratio-3-4"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_be4f7d5e-e3b3-497d-9e44-6ced07fd9810_2.png"></div>
+                            <div class="stack-layer layer-2 ratio-3-4"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_be4f7d5e-e3b3-497d-9e44-6ced07fd9810_1.png"></div>
                             <div class="stack-layer layer-1 ratio-3-4">
-                                <img src="./images/zhou.zichen_A_bold_tactical_branding_graphic_featuring_the_wo_a15a6427-f89d-462b-a723-e920e1b9b6d4_1.png">
+                                <img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_be4f7d5e-e3b3-497d-9e44-6ced07fd9810_0.png">
                                 <div class="absolute inset-0 bg-black/70 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <span class="text-white font-bold text-[10px] tracking-widest border border-white px-4 py-2">查看完整库</span>
+                                    <span class="text-white font-bold text-[10px] tracking-widest border border-white px-4 py-2">查看完整库 (8张)</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="lg:col-span-8">
-                        <h4 class="library-title"><span class="library-number">#07</span> 硬核和平鸽 (Hardcore Peace Pigeon)</h4>
-                        <p class="text-sm text-gray-400 mb-6 leading-relaxed">核心主题：和平是打出来的。鸽子符号机械化改造，由战术装具、枪械零件构成剪影。体现龙牙防御与力量的共存逻辑。</p>
-                        <div class="prompt-box">
-                            <span id="p-pigeon">T-shirt graphic design, "Hardcore Peace Pigeon", mechanical pigeon made of tactical gear, ammo components, and bullet parts, military schematic style, technical illustration, monochrome, high industrial aesthetic, clean vector lines, on light gray background</span>
-                            <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 3:4</div>
-                            <button class="absolute top-4 right-4 btn-copy" onclick="copyText('p-pigeon')">COPY</button>
+                        <h4 class="library-title"><span class="library-number">#01</span> 硬核和平鸽 (Hardcore Peace Pigeon)</h4>
+                        <p class="text-sm text-gray-400 mb-6 leading-relaxed">核心主题：和平是打出来的。极具力量感的文化衫主打。彻底颠覆柔弱鸽子形象，由战术装具、枪械零件与机甲骨骼解构重组。</p>
+                        
+                        <div class="space-y-4">
+                            <!-- Prompt A -->
+                            <div class="prompt-box">
+                                <div class="text-orange-500 font-bold text-xs mb-2 uppercase tracking-widest">Style A: 军事制图风格 (Military Blueprint)</div>
+                                <span id="p-pigeon-1" data-suffix=" --v 7.0 --ar 3:4">T-shirt graphic design, "Hardcore Peace Pigeon", mechanical pigeon constructed from tactical gear, ammo components, and bullet parts, military schematic blueprint style, technical illustration, monochrome white on light gray background, high industrial aesthetic, clean vector lines</span>
+                                <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 3:4</div>
+                                <button class="absolute top-4 right-4 btn-copy" onclick="copyText(this, 'p-pigeon-1')">COPY</button>
+                            </div>
+                            <!-- Prompt B -->
+                            <div class="prompt-box">
+                                <div class="text-orange-500 font-bold text-xs mb-2 uppercase tracking-widest">Style B: 模板涂鸦风格 (Stencil Spray)</div>
+                                <span id="p-pigeon-2" data-suffix=" --v 7.0 --ar 3:4">T-shirt graphic design, "Hardcore Peace Pigeon", aggressive pigeon silhouette made of fragmented tactical vest parts and gunmetal, military stencil spray paint style, rugged texture, high contrast black and orange accents, utilitarian streetwear aesthetic, flat background</span>
+                                <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 3:4</div>
+                                <button class="absolute top-4 right-4 btn-copy" onclick="copyText(this, 'p-pigeon-2')">COPY</button>
+                            </div>
+                            <!-- Prompt C -->
+                            <div class="prompt-box">
+                                <div class="text-orange-500 font-bold text-xs mb-2 uppercase tracking-widest">Style C: 工业渲染风格 (Cyber-Industrial)</div>
+                                <span id="p-pigeon-3" data-suffix=" --v 7.0 --ar 3:4">T-shirt graphic design, "Hardcore Peace Pigeon", 3D industrial render of a robotic pigeon assembled from matte black Cordura fabric, YKK zippers, and metallic tactical hardware, hyper-realistic, studio lighting, bold composition, dark tactical aesthetic</span>
+                                <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 3:4</div>
+                                <button class="absolute top-4 right-4 btn-copy" onclick="copyText(this, 'p-pigeon-3')">COPY</button>
+                            </div>
+                            <div class="kw-hint">中文关键词：T恤图案设计、硬核和平鸽、战术装备/弹药构成的机械鸽、军事蓝图风格/模板涂鸦风格/3D工业渲染风格</div>
                         </div>
                     </div>
                 </div>
+                <!-- 和平鸽全量库 -->
                 <div id="gallery-pigeon" class="hidden-gallery grid-cols-2 lg:grid-cols-4 gap-6 mt-12 border-t border-gray-800 pt-10">
-                    <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_A_bold_tactical_branding_graphic_featuring_the_wo_ed8d28a1-7403-49e8-a625-a601552ce8ef_1.png"></div>
-                    <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_A_bold_tactical_branding_graphic_featuring_the_wo_ed8d28a1-7403-49e8-a625-a601552ce8ef_2.png"></div>
-                    <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_A_bold_tactical_branding_graphic_featuring_the_wo_a15a6427-f89d-462b-a723-e920e1b9b6d4_1.png"></div>
-                    <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_A_bold_tactical_branding_graphic_featuring_the_wo_e6b1622f-8bea-4a2a-a0c4-7ea1a45b2a0d_1.png"></div>
+                    <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_be4f7d5e-e3b3-497d-9e44-6ced07fd9810_0.png"></div>
+                    <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_be4f7d5e-e3b3-497d-9e44-6ced07fd9810_1.png"></div>
+                    <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_be4f7d5e-e3b3-497d-9e44-6ced07fd9810_2.png"></div>
+                    <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_be4f7d5e-e3b3-497d-9e44-6ced07fd9810_3.png"></div>
+                    <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_cff26c3f-a13f-47ac-a579-5ab3e4a10e35_1.png"></div>
+                    <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_cff26c3f-a13f-47ac-a579-5ab3e4a10e35_3.png"></div>
+                    <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_d88bd2af-c46d-4e8e-8166-7424390f6a17_1.png"></div>
+                    <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_d88bd2af-c46d-4e8e-8166-7424390f6a17_3.png"></div>
                 </div>
             </div>
 
-            <!-- #01 战术地形图 -->
+            <!-- #02 战术地形图 -->
             <div class="card-dark p-8 group">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                     <div class="lg:col-span-4">
@@ -406,13 +438,14 @@
                         </div>
                     </div>
                     <div class="lg:col-span-8">
-                        <h4 class="library-title"><span class="library-number">#01</span> 战术地形图 (Tactical Topography)</h4>
+                        <h4 class="library-title"><span class="library-number">#02</span> 战术地形图 (Tactical Topography)</h4>
                         <p class="text-sm text-gray-400 mb-6">高精细度城市网格、等高线。展现品牌在全球任务场景下的精准定位。工业军事测绘美学。</p>
                         <div class="prompt-box">
-                            <span id="p-topo">Tactical topographical map graphic of a dense urban environment, stylized with grid coordinates, navigation symbols, and strategic route lines, military cartography aesthetic, industrial palette</span>
+                            <span id="p-topo" data-suffix=" --v 7.0 --ar 3:4">Tactical topographical map graphic of a dense urban environment, stylized with grid coordinates, navigation symbols, and strategic route lines, military cartography aesthetic, industrial palette</span>
                             <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 3:4</div>
-                            <button class="absolute top-4 right-4 btn-copy" onclick="copyText('p-topo')">COPY</button>
+                            <button class="absolute top-4 right-4 btn-copy" onclick="copyText(this, 'p-topo')">COPY</button>
                         </div>
+                        <div class="kw-hint">中文关键词：战术地形图、密集的城市环境、网格坐标、导航符号、战略路线、军事测绘美学、工业调色板</div>
                     </div>
                 </div>
                 <div id="gallery-topo" class="hidden-gallery grid-cols-2 lg:grid-cols-4 gap-6 mt-12 border-t border-gray-800 pt-10">
@@ -423,7 +456,7 @@
                 </div>
             </div>
 
-            <!-- #02 技术解构 -->
+            <!-- #03 技术解构拉链 -->
             <div class="card-dark p-8 group">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                     <div class="lg:col-span-4">
@@ -434,13 +467,14 @@
                         </div>
                     </div>
                     <div class="lg:col-span-8">
-                        <h4 class="library-title"><span class="library-number">#02</span> 技术解构拉链 (Deconstructed Zipper)</h4>
+                        <h4 class="library-title"><span class="library-number">#03</span> 技术解构拉链 (Deconstructed Zipper)</h4>
                         <p class="text-sm text-gray-400 mb-6">极简解构 YKK 战术拉链，平铺矢量风格。工业标签与线条制图，体现缝制工艺的结构美感。</p>
                         <div class="prompt-box">
-                            <span id="p-zip">A minimalist T-shirt graphic design of a deconstructed YKK tactical zipper, flat vector art, technical line work, industrial labeling, placement print composition, monochrome</span>
+                            <span id="p-zip" data-suffix=" --v 7.0 --ar 3:4">A minimalist T-shirt graphic design of a deconstructed YKK tactical zipper, flat vector art, technical line work, industrial labeling, placement print composition, monochrome</span>
                             <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 3:4</div>
-                            <button class="absolute top-4 right-4 btn-copy" onclick="copyText('p-zip')">COPY</button>
+                            <button class="absolute top-4 right-4 btn-copy" onclick="copyText(this, 'p-zip')">COPY</button>
                         </div>
+                        <div class="kw-hint">中文关键词：极简T恤图案设计、解构的YKK战术拉链、平铺矢量图、技术线条作业、工业标签、放置印花构图、单色</div>
                     </div>
                 </div>
                 <div id="gallery-zipper" class="hidden-gallery grid-cols-2 lg:grid-cols-4 gap-6 mt-12 border-t border-gray-800 pt-10">
@@ -451,7 +485,7 @@
                 </div>
             </div>
 
-            <!-- #03 性能参数 -->
+            <!-- #04 性能参数可视化 -->
             <div class="card-dark p-8 group">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                     <div class="lg:col-span-4">
@@ -461,13 +495,14 @@
                         </div>
                     </div>
                     <div class="lg:col-span-8">
-                        <h4 class="library-title"><span class="library-number">#03</span> 性能参数可视化 (Performance Specs)</h4>
+                        <h4 class="library-title"><span class="library-number">#04</span> 性能参数可视化 (Performance Specs)</h4>
                         <p class="text-sm text-gray-400 mb-6">面料耐用性雷达图、工业无衬线字体。将枯燥的技术参数转化为极具装饰感的科技内参视觉。</p>
                         <div class="prompt-box">
-                            <span id="p-spec">Technical apparel placement print, data visualization of fabric durability, radar charts, industrial typography, flat vector design, minimalist lines</span>
+                            <span id="p-spec" data-suffix=" --v 7.0 --ar 3:4">Technical apparel placement print, data visualization of fabric durability, radar charts, industrial typography, flat vector design, minimalist lines</span>
                             <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 3:4</div>
-                            <button class="absolute top-4 right-4 btn-copy" onclick="copyText('p-spec')">COPY</button>
+                            <button class="absolute top-4 right-4 btn-copy" onclick="copyText(this, 'p-spec')">COPY</button>
                         </div>
+                        <div class="kw-hint">中文关键词：技术服装放置印花、织物耐久性数据可视化、雷达图、工业版式、平面矢量设计、极简线条</div>
                     </div>
                 </div>
                 <div id="gallery-spec" class="hidden-gallery grid-cols-2 lg:grid-cols-4 gap-6 mt-12 border-t border-gray-800 pt-10">
@@ -478,7 +513,36 @@
                 </div>
             </div>
 
-            <!-- #05 生存清单 -->
+            <!-- #05 品牌喷码识别 -->
+            <div class="card-dark p-8 group">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-4">
+                        <div class="img-stack" onclick="toggleGallery('gallery-stencil')">
+                            <div class="stack-layer layer-3 ratio-3-4"><img src="./images/zhou.zichen_A_bold_tactical_branding_graphic_featuring_the_wo_e6b1622f-8bea-4a2a-a0c4-7ea1a45b2a0d_1.png"></div>
+                            <div class="stack-layer layer-2 ratio-3-4"><img src="./images/zhou.zichen_A_bold_tactical_branding_graphic_featuring_the_wo_a15a6427-f89d-462b-a723-e920e1b9b6d4_1.png"></div>
+                            <div class="stack-layer layer-1 ratio-3-4"><img src="./images/zhou.zichen_A_bold_tactical_branding_graphic_featuring_the_wo_ed8d28a1-7403-49e8-a625-a601552ce8ef_1.png"></div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-8">
+                        <h4 class="library-title"><span class="library-number">#05</span> 品牌 ID 喷码 (Brand Stencil)</h4>
+                        <p class="text-sm text-gray-400 mb-6">破碎的军事涂装字体，辅以工业级序列编号。传递强烈的战术军品与功能主义视觉特征。</p>
+                        <div class="prompt-box">
+                            <span id="p-stencil" data-suffix=" --v 7.0 --ar 3:4">A bold tactical branding graphic, featuring the word "DRAGON TOOTH" in a fragmented military stencil font, industrial serial numbers, technical specs, screen print aesthetic, utilitarian look</span>
+                            <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 3:4</div>
+                            <button class="absolute top-4 right-4 btn-copy" onclick="copyText(this, 'p-stencil')">COPY</button>
+                        </div>
+                        <div class="kw-hint">中文关键词：粗犷的战术品牌图案、碎片化军事模板字体、工业序列号、技术规格、丝网印刷美学、实用主义外观</div>
+                    </div>
+                </div>
+                <div id="gallery-stencil" class="hidden-gallery grid-cols-2 lg:grid-cols-4 gap-6 mt-12 border-t border-gray-800 pt-10">
+                    <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_A_bold_tactical_branding_graphic_featuring_the_wo_ed8d28a1-7403-49e8-a625-a601552ce8ef_1.png"></div>
+                    <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_A_bold_tactical_branding_graphic_featuring_the_wo_ed8d28a1-7403-49e8-a625-a601552ce8ef_2.png"></div>
+                    <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_A_bold_tactical_branding_graphic_featuring_the_wo_a15a6427-f89d-462b-a723-e920e1b9b6d4_1.png"></div>
+                    <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_A_bold_tactical_branding_graphic_featuring_the_wo_e6b1622f-8bea-4a2a-a0c4-7ea1a45b2a0d_1.png"></div>
+                </div>
+            </div>
+
+            <!-- #06 生存清单 -->
             <div class="card-dark p-8 group">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                     <div class="lg:col-span-4">
@@ -488,13 +552,14 @@
                         </div>
                     </div>
                     <div class="lg:col-span-8">
-                        <h4 class="library-title"><span class="library-number">#05</span> 生存清单 (Survival Manifest)</h4>
+                        <h4 class="library-title"><span class="library-number">#06</span> 生存清单 (Survival Manifest)</h4>
                         <p class="text-sm text-gray-400 mb-6">垂直背幅图形。极简图标化装备清单、序列号与品牌标识。实用主义美学的极致表达。</p>
                         <div class="prompt-box">
-                            <span id="p-manifest">Vertical back-print graphic for tactical jacket, minimalist icon manifest of travel gear, tactical iconography, serial numbers, stencil print style</span>
+                            <span id="p-manifest" data-suffix=" --v 7.0 --ar 3:4">Vertical back-print graphic for tactical jacket, minimalist icon manifest of travel gear, tactical iconography, serial numbers, stencil print style</span>
                             <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 3:4</div>
-                            <button class="absolute top-4 right-4 btn-copy" onclick="copyText('p-manifest')">COPY</button>
+                            <button class="absolute top-4 right-4 btn-copy" onclick="copyText(this, 'p-manifest')">COPY</button>
                         </div>
+                        <div class="kw-hint">中文关键词：战术夹克垂直背印图形、差旅装备极简图标清单、战术图标、序列号、模板印刷风格</div>
                     </div>
                 </div>
                 <div id="gallery-manifest" class="hidden-gallery grid-cols-2 lg:grid-cols-4 gap-6 mt-12 border-t border-gray-800 pt-10">
@@ -505,7 +570,7 @@
                 </div>
             </div>
 
-            <!-- #06 导航坐标 -->
+            <!-- #07 导航坐标 -->
             <div class="card-dark p-8 group">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                     <div class="lg:col-span-4">
@@ -515,13 +580,14 @@
                         </div>
                     </div>
                     <div class="lg:col-span-8">
-                        <h4 class="library-title"><span class="library-number">#06</span> 导航与坐标 (Navigation Data)</h4>
+                        <h4 class="library-title"><span class="library-number">#07</span> 导航与坐标 (Navigation Data)</h4>
                         <p class="text-sm text-gray-400 mb-6">技术文本、罗盘图形与矢量线条。展现品牌在地理位置与身份识别上的工业精准度。</p>
                         <div class="prompt-box">
-                            <span id="p-nav">Technical graphic design for streetwear, tactical compass rose and navigation data strings, stencil typography, geometric precision</span>
+                            <span id="p-nav" data-suffix=" --v 7.0 --ar 3:4">Technical graphic design for streetwear, tactical compass rose and navigation data strings, stencil typography, geometric precision</span>
                             <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 3:4</div>
-                            <button class="absolute top-4 right-4 btn-copy" onclick="copyText('p-nav')">COPY</button>
+                            <button class="absolute top-4 right-4 btn-copy" onclick="copyText(this, 'p-nav')">COPY</button>
                         </div>
+                        <div class="kw-hint">中文关键词：街头技术图形设计、战术罗盘与导航数据字符串、模板版式、几何精度</div>
                     </div>
                 </div>
                 <div id="gallery-nav" class="hidden-gallery grid-cols-2 lg:grid-cols-4 gap-6 mt-12 border-t border-gray-800 pt-10">
@@ -556,7 +622,7 @@
         </div>
     </section>
 
-    <!-- 【NEW】Phase 7: AI 面料与科技视觉沙盒 -->
+    <!-- Phase 7: AI 面料与科技视觉沙盒 -->
     <section id="materials" class="py-20 container mx-auto px-6 border-t border-gray-800">
         <h3 class="text-3xl font-bold text-white mb-6 brand-font uppercase italic tracking-widest border-l-4 border-orange-600 pl-4">Phase 7: AI 面料与科技视觉沙盒 (Material Lab)</h3>
         <p class="text-gray-400 text-sm mb-12 leading-relaxed">利用 AI 显微摄影与热成像技术，将龙牙“看不见的面料科技”转化为极具说服力的品牌视觉资产。让消费者直观感受到 Cordura 的耐磨性与 PI 棉的保暖逻辑。</p>
@@ -569,11 +635,14 @@
                         <h4 class="text-xl font-bold text-white uppercase italic">1. Cordura PRO 显微防撕裂结构</h4>
                         <p class="text-xs text-gray-500 mt-2">适用场景：商品详情页的面料科技展示背板</p>
                     </div>
-                    <button class="btn-copy" onclick="copyText('p-cordura')">COPY PROMPT</button>
+                    <button class="btn-copy" onclick="copyText(this, 'p-cordura')">COPY PROMPT</button>
                 </div>
-                <div class="prompt-box mb-6">
-                    <span id="p-cordura">Macro photography, scanning electron microscope (SEM) style of high-tech Cordura PRO fabric, extremely detailed interwoven nylon fibers, micro-grid ripstop texture, industrial ruggedness, dark slate gray, dramatic micro-lighting, hyper-realistic, 8k --v 7.0 --ar 16:9</span>
+                <div class="prompt-box mb-2">
+                    <span id="p-cordura" data-suffix=" --v 7.0 --ar 16:9">Macro photography, scanning electron microscope (SEM) style of high-tech Cordura PRO fabric, extremely detailed interwoven nylon fibers, micro-grid ripstop texture, industrial ruggedness, dark slate gray, dramatic micro-lighting, hyper-realistic, 8k</span>
+                    <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 16:9</div>
                 </div>
+                <div class="kw-hint mb-6">中文关键词：微距摄影、扫描电子显微镜风格、高科技Cordura PRO面料、极详细的交织尼龙纤维、微格纹防撕裂纹理、工业坚固感、深石板灰、戏剧性微观照明</div>
+                
                 <div class="grid grid-cols-3 gap-4">
                     <div class="empty-slot" style="aspect-ratio: 16/9;"><i class="fas fa-microscope"></i>待生成显微图 A</div>
                     <div class="empty-slot" style="aspect-ratio: 16/9;"><i class="fas fa-microscope"></i>待生成显微图 B</div>
@@ -588,11 +657,14 @@
                         <h4 class="text-xl font-bold text-white uppercase italic">2. PI 棉热捕捉与风洞排热可视化</h4>
                         <p class="text-xs text-gray-500 mt-2">适用场景：动态温控技术 (Thermal Control) 的视觉背书</p>
                     </div>
-                    <button class="btn-copy" onclick="copyText('p-thermal')">COPY PROMPT</button>
+                    <button class="btn-copy" onclick="copyText(this, 'p-thermal')">COPY PROMPT</button>
                 </div>
-                <div class="prompt-box mb-6">
-                    <span id="p-thermal">Thermal imaging simulation of a tactical jacket, heat map visual design, cold blue outer shell with glowing orange and red inner heat retention zones, high-tech scientific analysis style, wind tunnel heat dissipation arrows, futuristic UI overlay, dark background --v 7.0 --ar 16:9</span>
+                <div class="prompt-box mb-2">
+                    <span id="p-thermal" data-suffix=" --v 7.0 --ar 16:9">Thermal imaging simulation of a tactical jacket, heat map visual design, cold blue outer shell with glowing orange and red inner heat retention zones, high-tech scientific analysis style, wind tunnel heat dissipation arrows, futuristic UI overlay, dark background</span>
+                    <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 16:9</div>
                 </div>
+                <div class="kw-hint mb-6">中文关键词：战术夹克热成像模拟、热图视觉设计、冷蓝色外壳与发光的橙红色内部保温区、高科技科学分析风格、风洞散热箭头、未来感UI叠加</div>
+
                 <div class="grid grid-cols-3 gap-4">
                     <div class="empty-slot" style="aspect-ratio: 16/9;"><i class="fas fa-thermometer-half"></i>待生成热成像 A</div>
                     <div class="empty-slot" style="aspect-ratio: 16/9;"><i class="fas fa-thermometer-half"></i>待生成热成像 B</div>
@@ -602,26 +674,114 @@
         </div>
     </section>
 
-    <!-- 【NEW】Phase 8: 品牌数字人与情绪画册 -->
+    <!-- 【全面重构】Phase 8: 品牌数字人与情绪画册 -->
     <section id="avatar" class="py-20 container mx-auto px-6 border-t border-gray-800">
-        <h3 class="text-3xl font-bold text-white mb-6 brand-font uppercase italic tracking-widest border-l-4 border-orange-600 pl-4">Phase 8: 品牌数字人与环境画册 (Digital Lookbook)</h3>
-        <p class="text-gray-400 text-sm mb-12 leading-relaxed">建立龙牙专属的固定虚拟模特面孔，摆脱传统影棚局限。将生成好的产品置入极寒、荒漠或赛博工业环境中，打造具有强烈情绪张力的电影级大片。</p>
+        <h3 class="text-3xl font-bold text-white mb-6 brand-font uppercase italic tracking-widest border-l-4 border-orange-600 pl-4">Phase 8: 品牌专属数字人库 (Digital Avatars)</h3>
+        <p class="text-gray-400 text-sm mb-12 leading-relaxed">基于核心用户画像，通过 AI 构建龙牙专属的虚拟角色矩阵（全宇宙设定）。摆脱传统影棚局限，将产品置于电影级真实场景中，赋予装备强烈的情绪张力与故事感。</p>
         
-        <div class="card-dark p-8">
-            <div class="flex justify-between items-start mb-6">
-                <div>
-                    <h4 class="text-xl font-bold text-white uppercase italic">专属数字模特构建 (Dragon Tooth Avatar)</h4>
-                    <p class="text-xs text-gray-500 mt-2">人物设定：35岁男性，硬朗，坚毅，具有极强职业素养的战术通勤者。</p>
+        <div class="space-y-12">
+            <!-- Avatar 1: 城市战术通勤 -->
+            <div class="card-dark p-8 group">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-5">
+                        <div class="empty-slot" style="aspect-ratio: 16/9; font-size: 14px;">
+                            <i class="fas fa-user-tie text-3xl mb-2"></i>待补充数字人 A：城市干预者
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7 space-y-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="text-xl font-bold text-white uppercase italic brand-font tracking-widest">档案代号：Alpha-01 (城市干预者)</h4>
+                                <div class="flex flex-wrap gap-2 mt-3">
+                                    <span class="word-cloud-tag primary">用户画像：城市战术通勤</span>
+                                    <span class="word-cloud-tag">30-45岁</span>
+                                    <span class="word-cloud-tag">体制内/企业高管</span>
+                                    <span class="word-cloud-tag">专业利落</span>
+                                </div>
+                            </div>
+                            <button class="btn-copy" onclick="copyText(this, 'p-avatar-1')">COPY PROMPT</button>
+                        </div>
+                        <div class="text-xs text-gray-400 bg-gray-900 p-4 rounded border border-gray-800 leading-relaxed">
+                            <span class="text-orange-500 font-bold block mb-1">【角色设定】</span>
+                            穿梭于 CBD 玻璃幕墙与深夜高架桥之间的“西装暴徒”。极度自律，对装备的平整度与功能性有严苛要求。夹克不仅是御寒物，更是他应对突发商战与通勤的“软性装甲”。
+                        </div>
+                        <div class="prompt-box">
+                            <span id="p-avatar-1" data-suffix=" --v 7.0 --ar 16:9">Cinematic portrait of a 35-year-old hardened male corporate executive, short neat hair, sharp jawline, wearing a sleek minimalist dark gray tactical administrative jacket, standing in a modern glass office building overlooking a cyberpunk megacity at dusk, moody lighting, professional yet dangerous, shot on 85mm lens, hyper-realistic</span>
+                            <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 16:9</div>
+                        </div>
+                        <div class="kw-hint">中文关键词：35岁男性、企业高管、干练短发、极简深灰战术行政夹克、现代玻璃办公楼、俯瞰黄昏城市、冷峻氛围、专业且危险的质感、电影级肖像</div>
+                    </div>
                 </div>
-                <button class="btn-copy" onclick="copyText('p-avatar')">COPY PROMPT</button>
             </div>
-            <div class="prompt-box mb-6">
-                <span id="p-avatar">Cinematic portrait of a 35-year-old hardened male tactical operator, sharp jawline, intense gaze, wearing a dark gray high-tech tactical jacket, standing in a rainy cyberpunk industrial megacity, moody neon lighting, rain drops on waterproof fabric, shot on 85mm lens, hyper-realistic --v 7.0 --ar 16:9</span>
+
+            <!-- Avatar 2: 轻户外极客 -->
+            <div class="card-dark p-8 group">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-5">
+                        <div class="empty-slot" style="aspect-ratio: 16/9; font-size: 14px;">
+                            <i class="fas fa-mountain text-3xl mb-2"></i>待补充数字人 B：全地形探索者
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7 space-y-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="text-xl font-bold text-white uppercase italic brand-font tracking-widest">档案代号：Delta-04 (全地形探索者)</h4>
+                                <div class="flex flex-wrap gap-2 mt-3">
+                                    <span class="word-cloud-tag primary">用户画像：轻户外装备玩家</span>
+                                    <span class="word-cloud-tag">26-40岁</span>
+                                    <span class="word-cloud-tag">科技极客/工程师</span>
+                                    <span class="word-cloud-tag">敏捷自由</span>
+                                </div>
+                            </div>
+                            <button class="btn-copy" onclick="copyText(this, 'p-avatar-2')">COPY PROMPT</button>
+                        </div>
+                        <div class="text-xs text-gray-400 bg-gray-900 p-4 rounded border border-gray-800 leading-relaxed">
+                            <span class="text-orange-500 font-bold block mb-1">【角色设定】</span>
+                            科技公司的底层逻辑架构师，周末的全地形越野玩家。用数据丈量生活，对材质的透气率与毫米级风洞孔位如数家珍。服装是他“连接城市与自然”的硬件外设。
+                        </div>
+                        <div class="prompt-box">
+                            <span id="p-avatar-2" data-suffix=" --v 7.0 --ar 16:9">Cinematic portrait of a 28-year-old agile male tech engineer, wearing a slate blue lightweight tactical duty jacket with laser-cut vents, standing in a misty pine forest trail, subtle rain, high-tech outdoor aesthetic, sharp features, relaxed but alert, highly detailed fabric texture, cold and natural lighting</span>
+                            <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 16:9</div>
+                        </div>
+                        <div class="kw-hint">中文关键词：28岁男性、敏捷的科技工程师、雾霾蓝轻量战术夹克、激光切割通风孔、迷雾松林小径、细雨、高科技户外美学、警觉而放松、极具细节的面料纹理</div>
+                    </div>
+                </div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="empty-slot" style="aspect-ratio: 16/9; font-size: 14px;"><i class="fas fa-user-astronaut text-3xl mb-2"></i>待补充数字人大片 A</div>
-                <div class="empty-slot" style="aspect-ratio: 16/9; font-size: 14px;"><i class="fas fa-user-astronaut text-3xl mb-2"></i>待补充数字人大片 B</div>
+
+            <!-- Avatar 3: 稳定复购盘 -->
+            <div class="card-dark p-8 group">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-5">
+                        <div class="empty-slot" style="aspect-ratio: 16/9; font-size: 14px;">
+                            <i class="fas fa-shield-alt text-3xl mb-2"></i>待补充数字人 C：秩序捍卫者
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7 space-y-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="text-xl font-bold text-white uppercase italic brand-font tracking-widest">档案代号：Veteran-09 (秩序捍卫者)</h4>
+                                <div class="flex flex-wrap gap-2 mt-3">
+                                    <span class="word-cloud-tag primary">用户画像：中年稳定复购盘</span>
+                                    <span class="word-cloud-tag">45-55岁</span>
+                                    <span class="word-cloud-tag">退役转业/国企中坚</span>
+                                    <span class="word-cloud-tag">绝对可靠</span>
+                                </div>
+                            </div>
+                            <button class="btn-copy" onclick="copyText(this, 'p-avatar-3')">COPY PROMPT</button>
+                        </div>
+                        <div class="text-xs text-gray-400 bg-gray-900 p-4 rounded border border-gray-800 leading-relaxed">
+                            <span class="text-orange-500 font-bold block mb-1">【角色设定】</span>
+                            曾经历过风浪的体制内中坚力量。厌恶浮夸，信奉“经典即永恒”。衣服上的每道褶皱都代表着阅历，他需要的不是时装，而是能在任何风雨中提供绝对安全感的“战壕”。
+                        </div>
+                        <div class="prompt-box">
+                            <span id="p-avatar-3" data-suffix=" --v 7.0 --ar 16:9">Cinematic portrait of a 48-year-old resolute male veteran, weathered but handsome face, wearing a classic dark olive green heavy-duty tactical jacket, standing next to a rugged off-road vehicle in a dimly lit urban alley, gritty realism, mature and dependable, warm cinematic lighting, high contrast</span>
+                            <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 16:9</div>
+                        </div>
+                        <div class="kw-hint">中文关键词：48岁男性、坚毅的退役老兵、饱经风霜的英俊面庞、经典暗军绿色重型战术夹克、越野车旁、幽暗城市巷道、粗犷写实、成熟可靠、温暖电影光</div>
+                    </div>
+                </div>
             </div>
+
         </div>
     </section>
 
@@ -644,12 +804,6 @@
         function closeLightbox() {
             document.getElementById('lightbox').style.display = 'none';
         }
-        function copyText(id) {
-            const text = document.getElementById(id).innerText;
-            navigator.clipboard.writeText(text).then(() => {
-                alert('提示词已复制！所有参数均已合规。');
-            });
-        }
         function toggleGallery(id) {
             const gallery = document.getElementById(id);
             gallery.classList.toggle('gallery-active');
@@ -657,12 +811,36 @@
                 gallery.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }
-        function copyBundle() {
+        
+        // 全新静默复制逻辑
+        function copyText(btn, id) {
+            const textSpan = document.getElementById(id);
+            const textToCopy = textSpan.innerText;
+            const suffix = textSpan.getAttribute('data-suffix') || '';
+            const fullPrompt = textToCopy + suffix;
+            
+            navigator.clipboard.writeText(fullPrompt).then(() => {
+                const originalText = btn.innerText;
+                btn.innerText = 'COPIED!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.classList.remove('copied');
+                }, 1500);
+            });
+        }
+
+        function copyBundle(btn) {
             const content = document.getElementById('bundle-content').innerText;
             navigator.clipboard.writeText(content).then(() => {
-                alert('龙牙全量战略背景已注入剪贴板。');
+                const originalText = btn.innerText;
+                btn.innerText = '已注入剪贴板!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.classList.remove('copied');
+                }, 1500);
             });
         }
     </script>
 </body>
-</html>
