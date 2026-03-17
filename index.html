@@ -81,7 +81,7 @@
             </div>
             <nav class="hidden lg:flex space-x-5 text-[10px] uppercase font-bold tracking-widest text-gray-400">
                 <a href="#strategy" class="hover:text-orange-500">战略/母款</a>
-                <a href="#apparel-gen" class="hover:text-orange-500 text-orange-500">子款产出 (MJ/ComfyUI)</a>
+                <a href="#apparel-gen" class="hover:text-orange-500 text-orange-500">子款方向</a>
                 <a href="#prints" class="hover:text-orange-500">印花/文化衫</a>
                 <a href="#materials" class="hover:text-orange-500">面料沙盒</a>
                 <a href="#avatar" class="hover:text-orange-500">品牌数字人</a>
@@ -180,7 +180,7 @@
         </div>
     </section>
 
-    <!-- 大归纳：Phase 3 子款产出库 (Midjourney + ComfyUI) -->
+    <!-- 大归纳：Phase 3 子款方向库 (Midjourney + ComfyUI) -->
     <section id="apparel-gen" class="py-20 container mx-auto px-6 bg-gray-950 rounded-3xl mt-12 border border-gray-800 shadow-2xl">
         <div class="text-center mb-16">
             <h2 class="text-3xl font-bold text-white brand-font uppercase italic tracking-widest">Phase 3: 子款款式产出方向库</h2>
@@ -265,12 +265,7 @@
                     <div class="lg:col-span-4">
                         <div class="img-stack" onclick="toggleGallery('gallery-travel')">
                             <div class="stack-layer layer-2 ratio-3-4"><img src="./images/zhou.zichen_Full-body_Ghost_mannequin_shot_of_a_sleek_urban_t_22a18e28-7cfd-4bd0-a501-ba5d9e9bb65e_0.png"></div>
-                            <div class="stack-layer layer-1 ratio-3-4">
-                                <img src="./images/zhou.zichen_Full-body_Ghost_mannequin_shot_of_a_sleek_urban_t_22a18e28-7cfd-4bd0-a501-ba5d9e9bb65e_1.png">
-                                <div class="absolute inset-0 bg-black/70 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <span class="text-white font-bold text-[10px] tracking-widest border border-white px-4 py-2">展开款式库</span>
-                                </div>
-                            </div>
+                            <div class="stack-layer layer-1 ratio-3-4"><img src="./images/zhou.zichen_Full-body_Ghost_mannequin_shot_of_a_sleek_urban_t_22a18e28-7cfd-4bd0-a501-ba5d9e9bb65e_1.png"></div>
                         </div>
                     </div>
                     <div class="lg:col-span-8">
@@ -298,12 +293,7 @@
                     <div class="lg:col-span-4">
                         <div class="img-stack" onclick="toggleGallery('gallery-sun')">
                             <div class="stack-layer layer-2 ratio-3-4"><img src="./images/zhou.zichen_Full-body_Ghost_mannequin_shot_of_a_mens_tactical_a7cb7b04-4a5a-4990-a523-6fa920de3a5a_0.png"></div>
-                            <div class="stack-layer layer-1 ratio-3-4">
-                                <img src="./images/zhou.zichen_Full-body_Ghost_mannequin_shot_of_a_mens_tactical_a7cb7b04-4a5a-4990-a523-6fa920de3a5a_2.png">
-                                <div class="absolute inset-0 bg-black/70 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <span class="text-white font-bold text-[10px] tracking-widest border border-white px-4 py-2">展开款式库</span>
-                                </div>
-                            </div>
+                            <div class="stack-layer layer-1 ratio-3-4"><img src="./images/zhou.zichen_Full-body_Ghost_mannequin_shot_of_a_mens_tactical_a7cb7b04-4a5a-4990-a523-6fa920de3a5a_2.png"></div>
                         </div>
                     </div>
                     <div class="lg:col-span-8">
@@ -371,64 +361,63 @@
         </div>
 
         <div class="space-y-12">
-            <!-- #01 文化衫专项：硬核和平鸽 -->
-            <div class="card-dark p-8 group highlight-section">
+            <!-- #01 文化衫专项：硬核和平鸽 (重构为直列展开展示) -->
+            <div class="card-dark p-8 highlight-section">
                 <div class="mb-8 border-b border-gray-800 pb-4">
                     <h4 class="library-title"><span class="library-number">#01</span> 文化衫专项：硬核和平鸽 (Hardcore Peace Pigeon)</h4>
                     <p class="text-sm text-gray-400 leading-relaxed">核心主题：和平是打出来的。极具力量感的文化衫主打。彻底颠覆柔弱鸽子形象，由战术装具、枪械零件与机甲骨骼解构重组。</p>
                 </div>
                 
                 <div class="space-y-12">
-                    <!-- Style A -->
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                        <div class="lg:col-span-8">
-                            <div class="prompt-box">
-                                <div class="text-orange-500 font-bold text-xs mb-2 uppercase tracking-widest">Style A: 军事制图风格 (Military Blueprint)</div>
-                                <span id="p-pigeon-1" data-suffix=" --v 7.0 --ar 3:4">T-shirt graphic design, "Hardcore Peace Pigeon", mechanical pigeon made of tactical gear, ammo components, and bullet parts, military schematic style, technical illustration, monochrome, high industrial aesthetic, clean vector lines, on light gray background</span>
-                                <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 3:4</div>
-                                <button class="absolute top-4 right-4 btn-copy" onclick="copyText(this, 'p-pigeon-1')">COPY</button>
-                            </div>
-                            <div class="kw-hint mt-2">中文关键词：T恤图案设计、硬核和平鸽、战术装备/弹药部件制造的机械鸽、军事蓝图风格、技术插图、单色、高工业美学、纯净矢量线条</div>
+                    <!-- Style A: 军事制图 -->
+                    <div>
+                        <div class="prompt-box mb-6">
+                            <div class="text-orange-500 font-bold text-xs mb-2 uppercase tracking-widest">Style A: 军事制图风格 (Military Blueprint)</div>
+                            <span id="p-pigeon-1" data-suffix=" --v 7.0 --ar 3:4">T-shirt graphic design, "Hardcore Peace Pigeon", mechanical pigeon made of tactical gear, ammo components, and bullet parts, military schematic style, technical illustration, monochrome, high industrial aesthetic, clean vector lines, on light gray background</span>
+                            <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 3:4</div>
+                            <button class="absolute top-4 right-4 btn-copy" onclick="copyText(this, 'p-pigeon-1')">COPY</button>
                         </div>
-                        <div class="lg:col-span-4 grid grid-cols-2 gap-4">
+                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
                             <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_be4f7d5e-e3b3-497d-9e44-6ced07fd9810_0.png"></div>
                             <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_be4f7d5e-e3b3-497d-9e44-6ced07fd9810_1.png"></div>
                             <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_be4f7d5e-e3b3-497d-9e44-6ced07fd9810_2.png"></div>
                             <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_be4f7d5e-e3b3-497d-9e44-6ced07fd9810_3.png"></div>
-                        </div>
-                    </div>
-
-                    <!-- Style B -->
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start border-t border-gray-800 pt-8">
-                        <div class="lg:col-span-8">
-                            <div class="prompt-box">
-                                <div class="text-orange-500 font-bold text-xs mb-2 uppercase tracking-widest">Style B: 模板涂鸦风格 (Stencil Spray)</div>
-                                <span id="p-pigeon-2" data-suffix=" --v 7.0 --ar 3:4">T-shirt graphic design, "Hardcore Peace Pigeon", aggressive pigeon silhouette made of fragmented tactical vest parts and gunmetal, military stencil spray paint style, rugged texture, high contrast black and orange accents, utilitarian streetwear aesthetic, flat background</span>
-                                <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 3:4</div>
-                                <button class="absolute top-4 right-4 btn-copy" onclick="copyText(this, 'p-pigeon-2')">COPY</button>
-                            </div>
-                            <div class="kw-hint mt-2">中文关键词：侵略性鸽子剪影、碎片化战术背心与枪械金属构成、军事模板喷漆风格、粗糙纹理、实用主义街头美学</div>
-                        </div>
-                        <div class="lg:col-span-4 grid grid-cols-2 gap-4">
                             <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_cff26c3f-a13f-47ac-a579-5ab3e4a10e35_1.png"></div>
                             <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_cff26c3f-a13f-47ac-a579-5ab3e4a10e35_3.png"></div>
+                            <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_d88bd2af-c46d-4e8e-8166-7424390f6a17_1.png"></div>
+                            <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_d88bd2af-c46d-4e8e-8166-7424390f6a17_3.png"></div>
                         </div>
                     </div>
 
-                    <!-- Style C -->
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start border-t border-gray-800 pt-8">
-                        <div class="lg:col-span-8">
-                            <div class="prompt-box">
-                                <div class="text-orange-500 font-bold text-xs mb-2 uppercase tracking-widest">Style C: 工业渲染风格 (Cyber-Industrial)</div>
-                                <span id="p-pigeon-3" data-suffix=" --v 7.0 --ar 3:4">T-shirt graphic design, "Hardcore Peace Pigeon", 3D industrial render of a robotic pigeon assembled from matte black Cordura fabric, YKK zippers, and metallic tactical hardware, hyper-realistic, studio lighting, bold composition, dark tactical aesthetic</span>
-                                <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 3:4</div>
-                                <button class="absolute top-4 right-4 btn-copy" onclick="copyText(this, 'p-pigeon-3')">COPY</button>
-                            </div>
-                            <div class="kw-hint mt-2">中文关键词：3D工业渲染、哑光黑色Cordura面料组装的机器鸽、战术五金配件、超写实、影棚照明、暗黑战术美学</div>
+                    <!-- Style B: 模板涂鸦 -->
+                    <div class="border-t border-gray-800 pt-8">
+                        <div class="prompt-box mb-6">
+                            <div class="text-orange-500 font-bold text-xs mb-2 uppercase tracking-widest">Style B: 模板涂鸦风格 (Stencil Spray)</div>
+                            <span id="p-pigeon-2" data-suffix=" --v 7.0 --ar 3:4">T-shirt graphic design, "Hardcore Peace Pigeon", aggressive pigeon silhouette made of fragmented tactical vest parts and gunmetal, military stencil spray paint style, rugged texture, high contrast black and orange accents, utilitarian streetwear aesthetic, flat background</span>
+                            <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 3:4</div>
+                            <button class="absolute top-4 right-4 btn-copy" onclick="copyText(this, 'p-pigeon-2')">COPY</button>
                         </div>
-                        <div class="lg:col-span-4 grid grid-cols-2 gap-4">
-                            <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_d88bd2af-c46d-4e8e-8166-7424390f6a17_1.png"></div>
-                            <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_mech_d88bd2af-c46d-4e8e-8166-7424390f6a17_3.png"></div>
+                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                            <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_aggr_00e3781d-8598-4122-9953-d4824e7b454c_3.png"></div>
+                            <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_aggr_56b7aacd-ead8-49a2-a711-74d1564ffa98_1.png"></div>
+                            <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_aggr_56b7aacd-ead8-49a2-a711-74d1564ffa98_2.png"></div>
+                            <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_T-shirt_graphic_design_Hardcore_Peace_Pigeon_aggr_a90ba879-e24a-4fbe-9cd7-303681fa932e_3.png"></div>
+                        </div>
+                    </div>
+
+                    <!-- Style C: 工业渲染 -->
+                    <div class="border-t border-gray-800 pt-8">
+                        <div class="prompt-box mb-6">
+                            <div class="text-orange-500 font-bold text-xs mb-2 uppercase tracking-widest">Style C: 工业渲染风格 (Cyber-Industrial)</div>
+                            <span id="p-pigeon-3" data-suffix=" --v 7.0 --ar 3:4">T-shirt graphic design, "Hardcore Peace Pigeon", 3D industrial render of a robotic pigeon assembled from matte black Cordura fabric, YKK zippers, and metallic tactical hardware, hyper-realistic, studio lighting, bold composition, dark tactical aesthetic</span>
+                            <div class="tech-footer"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-2 opacity-20">|</span> <i class="fas fa-expand"></i> AR 3:4</div>
+                            <button class="absolute top-4 right-4 btn-copy" onclick="copyText(this, 'p-pigeon-3')">COPY</button>
+                        </div>
+                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                            <div class="empty-slot"><i class="fas fa-image"></i>待补充 Style C 素材</div>
+                            <div class="empty-slot"><i class="fas fa-image"></i>待补充 Style C 素材</div>
+                            <div class="empty-slot"><i class="fas fa-image"></i>待补充 Style C 素材</div>
+                            <div class="empty-slot"><i class="fas fa-image"></i>待补充 Style C 素材</div>
                         </div>
                     </div>
                 </div>
@@ -608,7 +597,7 @@
     </section>
 
     <!-- Phase 5: 技术规范组件库 -->
-    <section id="tech-library" class="py-20 container mx-auto px-6 border-t border-gray-800">
+    <section id="tech-library" class="py-20 container mx-auto px-6 border-t border-gray-800 mt-12">
         <h3 class="text-3xl font-bold text-white mb-12 brand-font uppercase italic tracking-widest border-l-4 border-orange-600 pl-4">Phase 5: 技术组件规范 (Component Standard)</h3>
         <p class="text-gray-400 text-sm mb-8">建立龙牙专属的工业级“技术白皮书”，规范口袋逻辑与风洞散热排布。</p>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
