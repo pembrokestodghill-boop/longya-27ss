@@ -138,23 +138,26 @@
         <img id="lightbox-img" src="" alt="Preview">
     </div>
 
+    <!-- Header -->
     <header class="bg-black border-b border-gray-800 sticky top-0 z-50">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-3">
                 <div class="w-8 h-8 bg-orange-600 rounded-sm flex items-center justify-center font-bold text-black italic">DT</div>
                 <h1 class="text-xl font-bold brand-font text-white uppercase tracking-tighter">Dragon Tooth 27SS AI Playbook</h1>
             </div>
-            <nav class="hidden lg:flex space-x-6 text-[10px] uppercase font-bold tracking-widest text-gray-400">
+            <nav class="hidden lg:flex space-x-4 text-[10px] uppercase font-bold tracking-widest text-gray-400">
                 <a href="#bundle" class="hover:text-orange-500">项目封装</a>
                 <a href="#mother" class="hover:text-orange-500">母款原型</a>
                 <a href="#planning" class="hover:text-orange-500">规划矩阵</a>
                 <a href="#mj-styles" class="hover:text-orange-500">MJ 进化</a>
-                <a href="#comfy-styles" class="hover:text-orange-500">ComfyUI 延伸</a>
+                <a href="#comfy-styles" class="hover:text-orange-500">ComfyUI</a>
                 <a href="#prints" class="hover:text-orange-500">印花方向</a>
+                <a href="#tech-library" class="hover:text-orange-500 text-orange-600">技术组件</a>
             </nav>
         </div>
     </header>
 
+    <!-- Phase 0: 项目封装包 -->
     <section id="bundle" class="py-12 container mx-auto px-6">
         <div class="card-dark p-8 border-l-4 border-l-orange-600 relative overflow-hidden">
             <div class="flex justify-between items-start mb-8 relative z-10">
@@ -202,6 +205,7 @@
         </div>
     </section>
 
+    <!-- Phase 1: 经典母款原型 -->
     <section id="mother" class="py-12 container mx-auto px-6">
         <h3 class="text-2xl font-bold text-white mb-8 brand-font uppercase italic tracking-widest border-l-4 border-orange-600 pl-4">Phase 1: 经典母款原型 (The Originals)</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -222,6 +226,7 @@
         </div>
     </section>
 
+    <!-- Phase 2: 规划矩阵 -->
     <section id="planning" class="py-12 container mx-auto px-6">
         <h3 class="text-2xl font-bold text-white mb-8 brand-font uppercase italic tracking-widest border-l-4 border-orange-600 pl-4">Phase 2: 27SS 夹克全案方向规划矩阵</h3>
         <div class="card-dark overflow-hidden shadow-2xl">
@@ -264,9 +269,11 @@
         </div>
     </section>
 
+    <!-- Phase 3: MJ 进化方向 -->
     <section id="mj-styles" class="py-12 container mx-auto px-6 bg-gray-950 rounded-2xl">
         <h3 class="text-2xl font-bold text-white mb-12 brand-font uppercase italic tracking-widest text-center">Phase 3: 子款进化生成方向 (MJ V7.0)</h3>
 
+        <!-- Direction 01 -->
         <div class="mb-20 px-4">
             <div class="flex justify-between items-end mb-4">
                 <div>
@@ -285,6 +292,7 @@
             </div>
         </div>
 
+        <!-- Direction 02 -->
         <div class="mb-20 px-4">
             <div class="flex justify-between items-end mb-4">
                 <div>
@@ -303,6 +311,7 @@
             </div>
         </div>
 
+        <!-- Direction 03 -->
         <div class="mb-20 px-4">
             <div class="flex justify-between items-end mb-4">
                 <div>
@@ -321,6 +330,7 @@
             </div>
         </div>
 
+        <!-- Direction 04 -->
         <div class="px-4">
             <div class="flex justify-between items-end mb-4">
                 <div>
@@ -340,6 +350,7 @@
         </div>
     </section>
 
+    <!-- Phase 4: ComfyUI -->
     <section id="comfy-styles" class="py-20 container mx-auto px-6">
         <h3 class="text-2xl font-bold text-white mb-12 brand-font uppercase italic tracking-widest text-center">Phase 4: ComfyUI 款式延伸方案</h3>
 
@@ -381,9 +392,11 @@
         </div>
     </section>
 
+    <!-- Phase 5: 印花方向 -->
     <section id="prints" class="py-20 container mx-auto px-6 bg-gray-950 rounded-2xl">
         <h3 class="text-2xl font-bold text-white mb-12 brand-font uppercase italic tracking-widest text-center">Phase 5: 印花设计方向 (Print Directions)</h3>
 
+        <!-- #01 -->
         <div class="mb-20 px-2">
             <div class="flex justify-between items-end mb-4 border-b border-gray-800 pb-2">
                 <h5 class="text-white font-bold uppercase italic text-sm">#01 Tactical Topography (战术地形图)</h5>
@@ -399,6 +412,55 @@
             </div>
         </div>
 
+        <!-- #02 -->
+        <div class="mb-20 px-2">
+            <div class="flex justify-between items-end mb-4 border-b border-gray-800 pb-2">
+                <h5 class="text-white font-bold uppercase italic text-sm">#02 Deconstructed Zipper (技术解构拉链)</h5>
+                <button class="btn-copy" onclick="copyPrompt('p-zipper')">复制 PROMPT</button>
+            </div>
+            <div class="prompt-box" id="p-zipper">A minimalist T-shirt graphic design of a deconstructed YKK tactical zipper, flat vector art, technical line work, industrial labeling, placement print composition, sharp edges, screen print texture, monochrome aesthetic, seamless commercial studio gray background --v 7.0 --ar 3:4</div>
+            <div class="kw-hint">中文关键词：解构拉链、YKK技术、矢量制图、工业标签、极简单色</div>
+            <div class="grid grid-cols-4 gap-4 mt-6">
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_A_minimalist_T-shirt_graphic_design_of_a_deconstr_774ce9c9-b0db-4356-9651-a5ed84bb838e_0.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_A_minimalist_T-shirt_graphic_design_of_a_deconstr_774ce9c9-b0db-4356-9651-a5ed84bb838e_3.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_A_minimalist_T-shirt_graphic_design_of_a_deconstr_b2d6a5c3-fe32-4099-bef5-bbd781bb3123_1.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_A_minimalist_T-shirt_graphic_design_of_a_deconstr_b2d6a5c3-fe32-4099-bef5-bbd781bb3123_3.png"></div>
+            </div>
+        </div>
+
+        <!-- #03 -->
+        <div class="mb-20 px-2">
+            <div class="flex justify-between items-end mb-4 border-b border-gray-800 pb-2">
+                <h5 class="text-white font-bold uppercase italic text-sm">#03 Performance Specs (面料性能参数)</h5>
+                <button class="btn-copy" onclick="copyPrompt('p-specs')">复制 PROMPT</button>
+            </div>
+            <div class="prompt-box" id="p-specs">A technical apparel placement print featuring a data visualization of fabric durability, radar charts, industrial sans-serif typography, flat vector design, minimalist lines, screen print aesthetic, monochrome white on a seamless gray background --v 7.0 --ar 3:4</div>
+            <div class="kw-hint">中文关键词：性能参数可视化、雷达图、工业无衬线体、极简线条、科技内参风格</div>
+            <div class="grid grid-cols-4 gap-4 mt-6">
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_A_technical_apparel_placement_print_featuring_a_d_ea228bff-23d2-42ab-9f1c-15bd90010f3c_1.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_A_technical_apparel_placement_print_featuring_a_d_ea228bff-23d2-42ab-9f1c-15bd90010f3c_2.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_A_technical_apparel_placement_print_featuring_a_d_601740d5-1103-4b0e-974f-871020fa43b8_2.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_A_technical_apparel_placement_print_featuring_a_d_601740d5-1103-4b0e-974f-871020fa43b8_3.png"></div>
+            </div>
+        </div>
+
+        <!-- #04 -->
+        <div class="mb-20 px-2">
+            <div class="flex justify-between items-end mb-4 border-b border-gray-800 pb-2">
+                <h5 class="text-white font-bold uppercase italic text-sm">#04 Brand Stencil ID (品牌喷码识别)</h5>
+                <button class="btn-copy" onclick="copyPrompt('p-id')">复制 PROMPT</button>
+            </div>
+            <div class="prompt-box" id="p-id">A bold tactical branding graphic, featuring the word "DRAGON TOOTH" in a fragmented military stencil font, industrial serial numbers, technical specs, screen print aesthetic, utilitarian look, gray background --v 7.0 --ar 3:4</div>
+            <div class="kw-hint">中文关键词：龙牙品牌ID、破碎军事字体、工业喷码、序列号、实用主义美学</div>
+            <div class="grid grid-cols-4 gap-4 mt-6">
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_A_bold_tactical_branding_graphic_featuring_the_wo_ed8d28a1-7403-49e8-a625-a601552ce8ef_1.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_A_bold_tactical_branding_graphic_featuring_the_wo_ed8d28a1-7403-49e8-a625-a601552ce8ef_2.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_A_bold_tactical_branding_graphic_featuring_the_wo_a15a6427-f89d-462b-a723-e920e1b9b6d4_1.png"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/zhou.zichen_A_bold_tactical_branding_graphic_featuring_the_wo_e6b1622f-8bea-4a2a-a0c4-7ea1a45b2a0d_1.png"></div>
+            </div>
+        </div>
+
+        <!-- #05 -->
         <div class="mb-20 px-2">
             <div class="flex justify-between items-end mb-4 border-b border-gray-800 pb-2">
                 <h5 class="text-white font-bold uppercase italic text-sm">#05 Survival Manifest (生存清单)</h5>
@@ -414,6 +476,7 @@
             </div>
         </div>
 
+        <!-- #06 -->
         <div class="px-2">
             <div class="flex justify-between items-end mb-4 border-b border-gray-800 pb-2">
                 <h5 class="text-white font-bold uppercase italic text-sm">#06 Navigation Data (导航坐标)</h5>
@@ -430,6 +493,50 @@
         </div>
     </section>
 
+    <!-- Phase 6: 技术组件标准库 (NEW) -->
+    <section id="tech-library" class="py-20 container mx-auto px-6 border-t border-gray-800">
+        <h3 class="text-2xl font-bold text-white mb-12 brand-font uppercase italic tracking-widest text-center">Phase 6: 技术组件标准库 (Component Standard)</h3>
+
+        <!-- 口袋系统 -->
+        <div class="mb-20">
+            <div class="flex justify-between items-end mb-4 px-2 border-l-4 border-orange-600 pl-4">
+                <div>
+                    <span class="text-white font-bold uppercase italic text-sm">#01 隐藏式收纳口袋系统 (Hidden Utility System)</span>
+                    <span class="text-[10px] text-gray-600 block mt-1">适用方案: 行政战术版 / 城市差旅版</span>
+                </div>
+                <button class="btn-copy" onclick="copyPrompt('p-pocket')">复制 PROMPT</button>
+            </div>
+            <div class="prompt-box" id="p-pocket">Industrial design blueprint of a tactical hidden pocket system, micro-detail macro shot, laser-cut bonded seams, YKK waterproof zipper teeth, premium Cordura matte fabric, technical line drawing overlays, orthographic view, clean studio lighting, 8k resolution --v 7.0 --ar 3:4</div>
+            <div class="kw-hint">中文关键词：口袋工业蓝图、微距特写、激光压胶缝线、YKK防水拉链、Cordura哑光面料、标注覆盖层</div>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/tech_pocket_01.png" alt="待补充细节1"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/tech_pocket_02.png" alt="待补充细节2"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/tech_pocket_03.png" alt="待补充细节3"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/tech_pocket_04.png" alt="待补充细节4"></div>
+            </div>
+        </div>
+
+        <!-- 散热结构 -->
+        <div>
+            <div class="flex justify-between items-end mb-4 px-2 border-l-4 border-orange-600 pl-4">
+                <div>
+                    <span class="text-white font-bold uppercase italic text-sm">#02 激光切割“风洞”散热结构 (Laser-cut Ventilation)</span>
+                    <span class="text-[10px] text-gray-600 block mt-1">适用方案: 轻量执勤版</span>
+                </div>
+                <button class="btn-copy" onclick="copyPrompt('p-vent')">复制 PROMPT</button>
+            </div>
+            <div class="prompt-box" id="p-vent">Technical macro photography of laser-cut ventilation holes in a hex-grid conductive yarn fabric, precision pattern, heat-dissipation "wind tunnel" structure visualization, sharp edges, contrast between outer shell and inner micro-mesh, tactical aesthetic, slate gray palette --v 7.0 --ar 3:4</div>
+            <div class="kw-hint">中文关键词：散热孔特写、六角格纹导电丝面料、风洞结构可视化、锐利边缘、内层微网布、战术美学</div>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/tech_vent_01.png" alt="待补充细节1"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/tech_vent_02.png" alt="待补充细节2"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/tech_vent_03.png" alt="待补充细节3"></div>
+                <div class="ratio-3-4" onclick="openLightbox(this)"><img src="./images/tech_vent_04.png" alt="待补充细节4"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer class="py-20 bg-black border-t border-gray-900 text-center">
         <div class="container mx-auto px-6">
             <div class="inline-block border border-orange-600 px-6 py-2 mb-6">
