@@ -30,6 +30,7 @@
             transition: all 0.3s ease;
         }
         .empty-slot i { font-size: 20px; margin-bottom: 8px; opacity: 0.5; }
+        .empty-slot:hover { border-color: #f97316; color: #9ca3af; }
 
         /* 叠放效果设计 */
         .img-stack { position: relative; width: 100%; max-width: 260px; margin: 0 auto; cursor: pointer; transition: all 0.3s ease; }
@@ -87,8 +88,9 @@
                 <a href="#strategy" class="hover:text-orange-500">战略/母款</a>
                 <a href="#apparel-gen" class="hover:text-orange-500">子款方向</a>
                 <a href="#prints" class="hover:text-orange-500">印花/文化衫</a>
+                <a href="#tech-library" class="hover:text-orange-500 text-orange-500">组件规范</a>
                 <a href="#materials" class="hover:text-orange-500">面料沙盒</a>
-                <a href="#avatar" class="hover:text-orange-500 text-orange-500">品牌数字人</a>
+                <a href="#avatar" class="hover:text-orange-500">品牌数字人</a>
             </nav>
         </div>
     </header>
@@ -184,7 +186,7 @@
         </div>
     </section>
 
-    <!-- 大归纳：Phase 3 子款方向库 (Midjourney + ComfyUI) -->
+    <!-- Phase 3 子款方向库 (Midjourney + ComfyUI) -->
     <section id="apparel-gen" class="py-20 container mx-auto px-6 bg-gray-950 rounded-3xl mt-12 border border-gray-800 shadow-2xl">
         <div class="text-center mb-16">
             <h2 class="text-3xl font-bold text-white brand-font uppercase italic tracking-widest">Phase 3: 子款款式产出方向库</h2>
@@ -658,23 +660,221 @@
         </div>
     </section>
 
-    <!-- Phase 5: 技术规范组件库 -->
+    <!-- Phase 5: 技术组件规范 (完全重构与扩充) -->
     <section id="tech-library" class="py-20 container mx-auto px-6 border-t border-gray-800 mt-12">
         <h3 class="text-3xl font-bold text-white mb-12 brand-font uppercase italic tracking-widest border-l-4 border-orange-600 pl-4">Phase 5: 技术组件规范 (Component Standard)</h3>
-        <p class="text-gray-400 text-sm mb-8">建立龙牙专属的工业级“技术白皮书”，规范口袋逻辑与风洞散热排布。</p>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div class="card-dark p-6">
-                <span class="text-orange-500 font-bold brand-font text-xl uppercase mb-4 block">#01 隐藏口袋收纳系统 (Admin/Travel)</span>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="empty-slot"><i class="fas fa-camera"></i>待补充技术细节图 1</div>
-                    <div class="empty-slot"><i class="fas fa-camera"></i>待补充技术细节图 2</div>
+        <p class="text-gray-400 text-sm mb-12">建立龙牙专属的工业级“技术白皮书”，不仅展示外观，更展示背后的战术工程逻辑与精密材质。</p>
+        
+        <div class="space-y-12">
+            <!-- #01 隐藏口袋收纳系统 -->
+            <div class="card-dark p-8 group border-t-4 border-t-gray-800 hover:border-t-orange-500 transition-colors">
+                <div class="mb-6">
+                    <h4 class="library-title"><span class="library-number">#01</span> 隐藏口袋收纳系统 (Admin/Travel)</h4>
+                    <div class="flex flex-wrap gap-2 mt-2 mb-4">
+                        <span class="word-cloud-tag primary">核心重点要素</span>
+                        <span class="word-cloud-tag">激光压胶无缝贴合</span>
+                        <span class="word-cloud-tag">YKK 哑光防水拉链</span>
+                        <span class="word-cloud-tag">内部隔层收纳矩阵</span>
+                    </div>
+                    <p class="text-sm text-gray-400">应用于 Admin 与 Travel 体系。强调外观的极致平整与内部强大的装载力，完美体现“隐匿的秩序”。</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <div class="lg:col-span-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="prompt-box flex flex-col justify-between">
+                            <div>
+                                <div class="text-orange-500 font-bold text-[10px] mb-2 uppercase tracking-widest">Style A: 工业蓝图风 (Blueprint)</div>
+                                <span id="p-comp1-a" data-suffix=" --v 7.0 --ar 3:4" class="text-[11px]">Technical blueprint of a tactical hidden pocket system, laser-cut bonded seams, YKK waterproof zipper, orthographic view, CAD line art, measurements and technical annotations, white lines on dark slate gray background, industrial design aesthetic</span>
+                            </div>
+                            <div class="mt-4 flex justify-between items-center">
+                                <div class="tech-footer !mt-0 !text-[8px]"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-1 opacity-20">|</span> 3:4</div>
+                                <button class="btn-copy !px-2 !py-1 !text-[9px]" onclick="copyText(this, 'p-comp1-a')">COPY</button>
+                            </div>
+                        </div>
+                        <div class="prompt-box flex flex-col justify-between">
+                            <div>
+                                <div class="text-orange-500 font-bold text-[10px] mb-2 uppercase tracking-widest">Style B: 微距特写风 (Macro)</div>
+                                <span id="p-comp1-b" data-suffix=" --v 7.0 --ar 3:4" class="text-[11px]">Extreme macro photography of a hidden utility pocket on a dark gray tactical jacket, premium Cordura fabric texture, matte waterproof seamless zipper, hyper-realistic, sharp focus on the bonded edge, cinematic studio lighting</span>
+                            </div>
+                            <div class="mt-4 flex justify-between items-center">
+                                <div class="tech-footer !mt-0 !text-[8px]"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-1 opacity-20">|</span> 3:4</div>
+                                <button class="btn-copy !px-2 !py-1 !text-[9px]" onclick="copyText(this, 'p-comp1-b')">COPY</button>
+                            </div>
+                        </div>
+                        <div class="prompt-box flex flex-col justify-between">
+                            <div>
+                                <div class="text-orange-500 font-bold text-[10px] mb-2 uppercase tracking-widest">Style C: 3D 透视剖解 (X-Ray Exploded)</div>
+                                <span id="p-comp1-c" data-suffix=" --v 7.0 --ar 3:4" class="text-[11px]">3D exploded view rendering of a tactical jacket pocket system, showing internal compartment matrix, breathable mesh lining, and outer Cordura shell hovering apart, techwear aesthetic, sleek studio lighting, futuristic</span>
+                            </div>
+                            <div class="mt-4 flex justify-between items-center">
+                                <div class="tech-footer !mt-0 !text-[8px]"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-1 opacity-20">|</span> 3:4</div>
+                                <button class="btn-copy !px-2 !py-1 !text-[9px]" onclick="copyText(this, 'p-comp1-c')">COPY</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-12 grid grid-cols-3 gap-6 mt-2">
+                        <div class="empty-slot ratio-3-4"><i class="fas fa-drafting-compass mb-2 text-gray-600"></i>待补充: Style A 蓝图素材</div>
+                        <div class="empty-slot ratio-3-4"><i class="fas fa-search mb-2 text-gray-600"></i>待补充: Style B 微距素材</div>
+                        <div class="empty-slot ratio-3-4"><i class="fas fa-layer-group mb-2 text-gray-600"></i>待补充: Style C 透视素材</div>
+                    </div>
                 </div>
             </div>
-            <div class="card-dark p-6">
-                <span class="text-orange-500 font-bold brand-font text-xl uppercase mb-4 block">#02 风洞散热结构 (Duty/Sun)</span>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="empty-slot"><i class="fas fa-camera"></i>待补充风洞细节图 1</div>
-                    <div class="empty-slot"><i class="fas fa-camera"></i>待补充风洞细节图 2</div>
+
+            <!-- #02 风洞散热结构 -->
+            <div class="card-dark p-8 group border-t-4 border-t-gray-800 hover:border-t-orange-500 transition-colors">
+                <div class="mb-6">
+                    <h4 class="library-title"><span class="library-number">#02</span> 风洞散热结构 (Duty/Sun)</h4>
+                    <div class="flex flex-wrap gap-2 mt-2 mb-4">
+                        <span class="word-cloud-tag primary">核心重点要素</span>
+                        <span class="word-cloud-tag">高精度激光切割</span>
+                        <span class="word-cloud-tag">空气动力学排布</span>
+                        <span class="word-cloud-tag">防静电导电微孔底网</span>
+                    </div>
+                    <p class="text-sm text-gray-400">主要应用于轻量执勤与战术防晒版。通过几何美学将排汗散热功能极致外化。</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <div class="lg:col-span-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="prompt-box flex flex-col justify-between">
+                            <div>
+                                <div class="text-orange-500 font-bold text-[10px] mb-2 uppercase tracking-widest">Style A: 工业蓝图风 (Blueprint)</div>
+                                <span id="p-comp2-a" data-suffix=" --v 7.0 --ar 3:4" class="text-[11px]">Technical schematic blueprint of laser-cut ventilation holes for a tactical jacket, geometric precision, wind tunnel heat dissipation concept, grid background, vector line art, technical annotations, industrial design</span>
+                            </div>
+                            <div class="mt-4 flex justify-between items-center">
+                                <div class="tech-footer !mt-0 !text-[8px]"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-1 opacity-20">|</span> 3:4</div>
+                                <button class="btn-copy !px-2 !py-1 !text-[9px]" onclick="copyText(this, 'p-comp2-a')">COPY</button>
+                            </div>
+                        </div>
+                        <div class="prompt-box flex flex-col justify-between">
+                            <div>
+                                <div class="text-orange-500 font-bold text-[10px] mb-2 uppercase tracking-widest">Style B: 微距特写风 (Macro)</div>
+                                <span id="p-comp2-b" data-suffix=" --v 7.0 --ar 3:4" class="text-[11px]">Close-up macro shot of laser-cut hexagonal ventilation holes on conductive yarn fabric, inner micro-mesh layer visible beneath, tactical apparel detail, sharp focus on laser-sealed edges, cinematic lighting</span>
+                            </div>
+                            <div class="mt-4 flex justify-between items-center">
+                                <div class="tech-footer !mt-0 !text-[8px]"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-1 opacity-20">|</span> 3:4</div>
+                                <button class="btn-copy !px-2 !py-1 !text-[9px]" onclick="copyText(this, 'p-comp2-b')">COPY</button>
+                            </div>
+                        </div>
+                        <div class="prompt-box flex flex-col justify-between">
+                            <div>
+                                <div class="text-orange-500 font-bold text-[10px] mb-2 uppercase tracking-widest">Style C: 气流动态透视 (Airflow Dynamics)</div>
+                                <span id="p-comp2-c" data-suffix=" --v 7.0 --ar 3:4" class="text-[11px]">Visualization of airflow dynamics through a tactical jacket's underarm ventilation, translucent fabric effect, glowing blue cool air currents passing through hexagonal holes, high-tech scientific analysis style, dark background</span>
+                            </div>
+                            <div class="mt-4 flex justify-between items-center">
+                                <div class="tech-footer !mt-0 !text-[8px]"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-1 opacity-20">|</span> 3:4</div>
+                                <button class="btn-copy !px-2 !py-1 !text-[9px]" onclick="copyText(this, 'p-comp2-c')">COPY</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-12 grid grid-cols-3 gap-6 mt-2">
+                        <div class="empty-slot ratio-3-4"><i class="fas fa-drafting-compass mb-2 text-gray-600"></i>待补充: Style A 蓝图素材</div>
+                        <div class="empty-slot ratio-3-4"><i class="fas fa-search mb-2 text-gray-600"></i>待补充: Style B 微距素材</div>
+                        <div class="empty-slot ratio-3-4"><i class="fas fa-wind mb-2 text-gray-600"></i>待补充: Style C 气流素材</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- #03 磁吸快拆门襟系统 (NEW) -->
+            <div class="card-dark p-8 group border-t-4 border-t-gray-800 hover:border-t-orange-500 transition-colors">
+                <div class="mb-6">
+                    <h4 class="library-title"><span class="library-number">#03</span> 磁吸快拆门襟系统 (Quick-Release Placket)</h4>
+                    <div class="flex flex-wrap gap-2 mt-2 mb-4">
+                        <span class="word-cloud-tag primary">核心重点要素</span>
+                        <span class="word-cloud-tag">盲操战术快开</span>
+                        <span class="word-cloud-tag">隐藏式强磁扣件</span>
+                        <span class="word-cloud-tag">超强抗撕裂打枣加固</span>
+                    </div>
+                    <p class="text-sm text-gray-400">专为高强度对抗场景设计的无延迟开合结构。在极限状态下仅靠拉拽即可完成战术解除。</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <div class="lg:col-span-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="prompt-box flex flex-col justify-between">
+                            <div>
+                                <div class="text-orange-500 font-bold text-[10px] mb-2 uppercase tracking-widest">Style A: 工业蓝图风 (Blueprint)</div>
+                                <span id="p-comp3-a" data-suffix=" --v 7.0 --ar 3:4" class="text-[11px]">Technical vector blueprint of a quick-release magnetic placket and zipper system for tactical outerwear, exploded view of magnetic hardware and zipper teeth, technical specs, stark contrast line art</span>
+                            </div>
+                            <div class="mt-4 flex justify-between items-center">
+                                <div class="tech-footer !mt-0 !text-[8px]"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-1 opacity-20">|</span> 3:4</div>
+                                <button class="btn-copy !px-2 !py-1 !text-[9px]" onclick="copyText(this, 'p-comp3-a')">COPY</button>
+                            </div>
+                        </div>
+                        <div class="prompt-box flex flex-col justify-between">
+                            <div>
+                                <div class="text-orange-500 font-bold text-[10px] mb-2 uppercase tracking-widest">Style B: 微距特写风 (Macro)</div>
+                                <span id="p-comp3-b" data-suffix=" --v 7.0 --ar 3:4" class="text-[11px]">Extreme close-up of a heavy-duty YKK tactical zipper and internal magnetic closure on matte black fabric, robust bar-tack stitching, industrial design, dramatic shadows, photorealistic</span>
+                            </div>
+                            <div class="mt-4 flex justify-between items-center">
+                                <div class="tech-footer !mt-0 !text-[8px]"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-1 opacity-20">|</span> 3:4</div>
+                                <button class="btn-copy !px-2 !py-1 !text-[9px]" onclick="copyText(this, 'p-comp3-b')">COPY</button>
+                            </div>
+                        </div>
+                        <div class="prompt-box flex flex-col justify-between">
+                            <div>
+                                <div class="text-orange-500 font-bold text-[10px] mb-2 uppercase tracking-widest">Style C: 动态瞬间捕捉 (Dynamic Action)</div>
+                                <span id="p-comp3-c" data-suffix=" --v 7.0 --ar 3:4" class="text-[11px]">Dynamic high-speed photography of a tactical jacket magnetic placket being ripped open, motion blur on the fabric, sharp focus on the separating magnetic buckles, high-tech apparel, dramatic action lighting</span>
+                            </div>
+                            <div class="mt-4 flex justify-between items-center">
+                                <div class="tech-footer !mt-0 !text-[8px]"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-1 opacity-20">|</span> 3:4</div>
+                                <button class="btn-copy !px-2 !py-1 !text-[9px]" onclick="copyText(this, 'p-comp3-c')">COPY</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-12 grid grid-cols-3 gap-6 mt-2">
+                        <div class="empty-slot ratio-3-4"><i class="fas fa-drafting-compass mb-2 text-gray-600"></i>待补充: Style A 蓝图素材</div>
+                        <div class="empty-slot ratio-3-4"><i class="fas fa-search mb-2 text-gray-600"></i>待补充: Style B 微距素材</div>
+                        <div class="empty-slot ratio-3-4"><i class="fas fa-bolt mb-2 text-gray-600"></i>待补充: Style C 动态瞬间素材</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- #04 海帕龙模块化外挂 (NEW) -->
+            <div class="card-dark p-8 group border-t-4 border-t-gray-800 hover:border-t-orange-500 transition-colors">
+                <div class="mb-6">
+                    <h4 class="library-title"><span class="library-number">#04</span> 海帕龙模块化外挂 (Hypalon Modular System)</h4>
+                    <div class="flex flex-wrap gap-2 mt-2 mb-4">
+                        <span class="word-cloud-tag primary">核心重点要素</span>
+                        <span class="word-cloud-tag">海帕龙高分子材质</span>
+                        <span class="word-cloud-tag">激光镭射切割孔位</span>
+                        <span class="word-cloud-tag">无缝融合战术魔术贴</span>
+                    </div>
+                    <p class="text-sm text-gray-400">取代传统臃肿的尼龙织带 MOLLE 系统。以极简、扁平化的硬核工业设计实现多任务装备挂载扩展。</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <div class="lg:col-span-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="prompt-box flex flex-col justify-between">
+                            <div>
+                                <div class="text-orange-500 font-bold text-[10px] mb-2 uppercase tracking-widest">Style A: 工业蓝图风 (Blueprint)</div>
+                                <span id="p-comp4-a" data-suffix=" --v 7.0 --ar 3:4" class="text-[11px]">Industrial line drawing blueprint of a tactical jacket shoulder patch modular hypalon system, laser-cut MOLLE slots, measurements and technical annotations, military spec, minimalist techwear</span>
+                            </div>
+                            <div class="mt-4 flex justify-between items-center">
+                                <div class="tech-footer !mt-0 !text-[8px]"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-1 opacity-20">|</span> 3:4</div>
+                                <button class="btn-copy !px-2 !py-1 !text-[9px]" onclick="copyText(this, 'p-comp4-a')">COPY</button>
+                            </div>
+                        </div>
+                        <div class="prompt-box flex flex-col justify-between">
+                            <div>
+                                <div class="text-orange-500 font-bold text-[10px] mb-2 uppercase tracking-widest">Style B: 微距特写风 (Macro)</div>
+                                <span id="p-comp4-b" data-suffix=" --v 7.0 --ar 3:4" class="text-[11px]">Macro photography of a laser-cut hypalon attachment panel on a dark olive tactical jacket, precise reinforced stitching, rugged rubberized texture, photorealistic, premium tactical gear</span>
+                            </div>
+                            <div class="mt-4 flex justify-between items-center">
+                                <div class="tech-footer !mt-0 !text-[8px]"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-1 opacity-20">|</span> 3:4</div>
+                                <button class="btn-copy !px-2 !py-1 !text-[9px]" onclick="copyText(this, 'p-comp4-b')">COPY</button>
+                            </div>
+                        </div>
+                        <div class="prompt-box flex flex-col justify-between">
+                            <div>
+                                <div class="text-orange-500 font-bold text-[10px] mb-2 uppercase tracking-widest">Style C: 3D 挂载演示 (3D Render)</div>
+                                <span id="p-comp4-c" data-suffix=" --v 7.0 --ar 3:4" class="text-[11px]">3D rendering of a tactical modular attachment system, showing interlocking hypalon layers and a matte metal carabiner clipping in, sleek techwear aesthetic, studio lighting, hyper-detailed material textures</span>
+                            </div>
+                            <div class="mt-4 flex justify-between items-center">
+                                <div class="tech-footer !mt-0 !text-[8px]"><i class="fas fa-microchip"></i> MJ V7.0 <span class="mx-1 opacity-20">|</span> 3:4</div>
+                                <button class="btn-copy !px-2 !py-1 !text-[9px]" onclick="copyText(this, 'p-comp4-c')">COPY</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-12 grid grid-cols-3 gap-6 mt-2">
+                        <div class="empty-slot ratio-3-4"><i class="fas fa-drafting-compass mb-2 text-gray-600"></i>待补充: Style A 蓝图素材</div>
+                        <div class="empty-slot ratio-3-4"><i class="fas fa-search mb-2 text-gray-600"></i>待补充: Style B 微距素材</div>
+                        <div class="empty-slot ratio-3-4"><i class="fas fa-cubes mb-2 text-gray-600"></i>待补充: Style C 挂载演示图</div>
+                    </div>
                 </div>
             </div>
         </div>
